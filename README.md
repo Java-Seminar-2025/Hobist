@@ -17,4 +17,4 @@
     to import data gathered so far) and database diagram that will expand
     in future and .yaml file that can run in inteliij IDE (docker must be
     added in intelijj) to set up our postgresql database
-
+    -Update: added src file with working code(you can send some data to database from browser)
