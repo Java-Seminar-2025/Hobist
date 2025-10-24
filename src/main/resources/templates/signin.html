@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="eng"
+      xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <title>Sign up</title>
+
+
+</head>
+<body>
+
+<form method="post">
+    name <input name="name"><br>
+    surname <input name="surname"><br>
+    mail <input type="email" name="e_mail"><br>
+    password <input type="password" name="password"><br>
+    confirm password <input type="password" name="confirmPassword"><br>
+    <button>Submit</button>
+    <br><p th:text="${emailErr}"></p>
+    <br><p th:text="${passErr}"></p>
+</form>
+
+</body>
+</html>
