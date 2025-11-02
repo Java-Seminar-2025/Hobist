@@ -1,20 +1,20 @@
 package gio.hobist.Controller;
-import gio.hobist.Entity.User;
-import gio.hobist.Interface.baseConnection;
+import gio.hobist.Model.User;
+import gio.hobist.Repository.baseConnection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import utils.security;
+import gio.hobist.utils.security;
 
 @Controller
 public class SigninController {
 
     @RequestMapping(path="/signin")
     public String index(){
-        return "signin.html";
+        return "signupPage.html";
     }
 
 

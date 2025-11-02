@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourcePerFileMappings">
+    <file url="file://$PROJECT_DIR$/Hobist_db_v1.sql" value="82abf8e7-f49f-4809-b5b2-93de6f769d52" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/82abf8e7-f49f-4809-b5b2-93de6f769d52/console.sql" value="82abf8e7-f49f-4809-b5b2-93de6f769d52" />
+  </component>
+</project>
