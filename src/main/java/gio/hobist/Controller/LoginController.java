@@ -1,31 +1,33 @@
 package gio.hobist.Controller;
-import gio.hobist.Entity.User;
-import gio.hobist.Interface.baseConnection;
+import gio.hobist.Model.User;
+import gio.hobist.Repository.baseConnection;
+
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import utils.security;
+import gio.hobist.utils.security;
 
 @Controller
 public class LoginController {
 
     @RequestMapping(path="/")//in case of no session redirects to login
-    public String redirect(HttpSession session){
+    public String redirect(HttpSession session) {
         if (session.getAttribute("userId") == null) {
             return "redirect:/login";
         }
-        return "main.html";
-
+        return "homePage.html";
     }
 
     @RequestMapping(path="/login")
     public String login(){
-        return "login.html";
+        return "loginPage.html";
     }
 
     @Autowired
@@ -43,7 +45,7 @@ public class LoginController {
                 session.setAttribute("userName",user.getName());
                 session.setAttribute("userId",user.getId());
 
-                return "main.html";
+                return "redirect:/home";
             }
             else{
                throw new Exception("");
@@ -53,7 +55,13 @@ public class LoginController {
             redirectAttributes.addFlashAttribute("loginErr","Incorrect email or password");
             return "redirect:/login";
         }
+
+
     }
 
+    @GetMapping(path="/home")
+    public String home(){
+        return "homePage.html";
+    }
 
 }
