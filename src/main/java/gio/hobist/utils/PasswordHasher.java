@@ -1,9 +1,8 @@
 package gio.hobist.utils;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
-import at.favre.lib.crypto.bcrypt.BCryptFormatter;
 
-public class security {
+public class PasswordHasher {
 
     public String hashPassword(String password){
         password= BCrypt.withDefaults().hashToString(12,password.toCharArray());
