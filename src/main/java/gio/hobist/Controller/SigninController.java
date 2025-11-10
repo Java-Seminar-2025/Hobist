@@ -1,13 +1,13 @@
 package gio.hobist.Controller;
-import gio.hobist.Model.User;
-import gio.hobist.Repository.baseConnection;
+import gio.hobist.Entity.User;
+import gio.hobist.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import gio.hobist.utils.security;
+import gio.hobist.utils.PasswordHasher;
 
 @Controller
 public class SigninController {
@@ -19,7 +19,7 @@ public class SigninController {
 
 
     @Autowired
-   private baseConnection dataSender;
+   private UserRepository dataSender;
 
     @PostMapping(path="/signin")
     public String signinPage(User user,@RequestParam String confirmPassword, RedirectAttributes redirectAttributes) {
@@ -30,7 +30,7 @@ public class SigninController {
            return "redirect:/signin";
        }
 
-        security hashingObject=new security();
+        PasswordHasher hashingObject=new PasswordHasher();
         String hashedPassword=hashingObject.hashPassword(user.getPassword());
         user.setPassword(hashedPassword);
 

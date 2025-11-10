@@ -4,9 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Check;
-import org.hibernate.annotations.Type;
-
-import java.util.Map;
 
 @Entity
 @Getter

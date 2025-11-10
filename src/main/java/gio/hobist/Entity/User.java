@@ -1,4 +1,4 @@
-package gio.hobist.Model;
+package gio.hobist.Entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
