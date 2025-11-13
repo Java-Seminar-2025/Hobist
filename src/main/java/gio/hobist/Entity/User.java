@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Entity
 @Getter
 @Setter
-@Table(name="\"user\"")
+@Table(name = "\"user\"")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

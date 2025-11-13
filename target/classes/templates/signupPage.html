@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns="http://www.w3.org/1999/xhtml">
+<link rel="stylesheet" th:href="@{/loginSignup.css}"/>
+<head>
+    <meta charset="UTF-8">
+    <title>Signup Page</title>
+</head>
+<body>
+
+<div id="outer-box">
+    <form th:action="@{/signin}"  method="post" th:object="${user}" autocomplete="off">
+        <h1 class="heading">Sign in here</h1>
+
+        <label>First name</label>
+        <input type="text" th:field="*{name}" placeholder="First Name" class="input-controll">
+        
+        <label>Last name</label>
+        
+        <input type="text" th:field="*{surname}" placeholder="Last Name" class="input-controll">
+        
+    
+        <label>Email</label>
+        <input type="email" th:field="*{e_mail}" placeholder="Email" class="input-controll">
+
+        <label>Password</label>
+        <input type="password" th:field="*{password}" placeholder="Password" class="input-controll">
+
+        <label>Confirm Password</label>
+        <input type="password" name="confirmPassword" placeholder="Confirm Password" class="input-controll">
+
+        <button type="submit" class="button" value="signin">Sign In</button>
+    </form>
+    <hr>
+        <div class="noAcc">
+        <p> Already have an acoount?<a href="/login"> Login here</a></p>
+    </div>
+</div>
+
+
+</body>
+</html>

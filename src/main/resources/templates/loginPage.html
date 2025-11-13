@@ -9,13 +9,13 @@
 <body>
     <div id="outer-box">
 
-        <form th:action="@{/login}" method="POST"  autocomplete="off">
+        <form th:action="@{/login}" method="POST" th:object="${user}"  autocomplete="off">
             <h1 class="heading">Login here</h1>
             <label>Email</label>
-            <input type="email" name="e_mail" class="imput-controll" placeholder="Your email address" required>
+            <input type="email" th:field="*{e_mail}" class="input-controll" placeholder="Your email address" required>
 
             <label>Password</label>
-            <input type="password" name="password" class="imput-controll" placeholder="Your password" required>
+            <input type="password" th:field="*{password}" class="input-controll" placeholder="Your password" required>
 
 
             <input type="submit" class="button" value="LOGIN">

@@ -3,6 +3,8 @@ import gio.hobist.Entity.User;
 import gio.hobist.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,7 +15,8 @@ import gio.hobist.utils.PasswordHasher;
 public class SigninController {
 
     @RequestMapping(path="/signin")
-    public String index(){
+    public String index(Model model){
+        model.addAttribute("user", new User());
         return "signupPage.html";
     }
 
@@ -22,7 +25,7 @@ public class SigninController {
    private UserRepository dataSender;
 
     @PostMapping(path="/signin")
-    public String signinPage(User user,@RequestParam String confirmPassword, RedirectAttributes redirectAttributes) {
+    public String signinPage(@ModelAttribute User user, @RequestParam String confirmPassword, RedirectAttributes redirectAttributes) {
 
 //       if (user.getPassword()!=confirmPassword){
         if (!confirmPassword.equals(user.getPassword())) {
@@ -36,6 +39,7 @@ public class SigninController {
 
         try {
             dataSender.save(user);
+            redirectAttributes.addFlashAttribute("message","Registered successfully!");
             return "redirect:/login";
         }
         catch(Exception e){
