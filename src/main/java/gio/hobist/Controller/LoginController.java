@@ -33,7 +33,7 @@ public class LoginController {
     private UserRepository dataReciver;
 
 
-    @PostMapping(path="/login")//i wanted to set this as @GetMapping but coulnd't resolve error with parameters
+    @PostMapping(path="/login")
     public String loginPage(@ModelAttribute("user") User user, RedirectAttributes redirectAttributes, HttpSession session){
 
 
