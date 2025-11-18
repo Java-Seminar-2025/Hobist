@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.UUID;
+
 @Entity
 @Getter
 @Setter
@@ -12,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(columnDefinition = "uuid")
+    private UUID id;
     private String name;
     private String surname;
     private String e_mail;
