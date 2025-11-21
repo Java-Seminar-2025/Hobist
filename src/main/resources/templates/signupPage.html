@@ -9,7 +9,7 @@ xmlns="http://www.w3.org/1999/xhtml">
 <body>
 
 <div id="outer-box">
-    <form th:action="@{/signin}"  method="post" th:object="${user}" autocomplete="off">
+    <form th:action="@{/signup}"  method="post" th:object="${user}" autocomplete="off">
         <h1 class="heading">Sign in here</h1>
 
         <label>First name</label>
@@ -27,13 +27,14 @@ xmlns="http://www.w3.org/1999/xhtml">
         <input type="password" th:field="*{password}" placeholder="Password" class="input-controll">
 
         <label>Confirm Password</label>
-        <input type="password" name="confirmPassword" placeholder="Confirm Password" class="input-controll">
+<!--        <input type="password" name="confirmPassword" placeholder="Confirm Password" class="input-controll">-->
+            <input type="password" th:field="*{confirmPassword}" placeholder="Confirm Password" class="input-controll">
 
-        <button type="submit" class="button" value="signin">Sign In</button>
+        <button type="submit" class="button" value="signup">Sign In</button>
     </form>
     <hr>
         <div class="noAcc">
-        <p> Already have an acoount?<a href="/login"> Login here</a></p>
+        <p> Already have an account?<a href="/login"> Login here</a></p>
     </div>
 </div>
 
