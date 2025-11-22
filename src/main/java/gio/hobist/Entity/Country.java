@@ -11,14 +11,14 @@ import lombok.Setter;
 public class Country {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private String name;
 
     public Country() { super(); }
 
-    public Country(String name) {
+    public Country(Integer id, String name) {
+        this.id = id;
         this.name = name;
     }
 }

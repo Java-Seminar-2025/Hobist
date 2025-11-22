@@ -9,8 +9,8 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
-@Table(name = "comment")
-public class Comment {
+@Table(name = "content_like")
+public class ContentLike {
 
     @Id
     @GeneratedValue
@@ -20,10 +20,13 @@ public class Comment {
     @JoinColumn(name = "id_post")
     private Post post;
 
-    private String message;
+    @ManyToOne
+    @JoinColumn(name = "id_comment")
+    private Comment comment;
 
-    @Column(name = "like_number")
-    private Integer likeNumber;
+    @ManyToOne
+    @JoinColumn(name = "id_user")
+    private User user;
 
-    public Comment() { super(); }
+    public ContentLike() { super(); }
 }
