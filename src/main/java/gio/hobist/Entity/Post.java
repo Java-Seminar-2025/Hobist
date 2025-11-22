@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Entity
 @Getter
 @Setter
@@ -11,22 +13,16 @@ import lombok.Setter;
 public class Post {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue
+    private UUID id;
 
-    @ManyToOne
-    @JoinColumn(name = "id_user", nullable = false)
-    private User user;
+    private String message;
 
-    private String content;
+    @Column(name = "image_raw_data")
+    private byte[] imageRawData;
 
-    private Integer likes;
+    @Column(name = "like_number")
+    private Integer likeNumber;
 
     public Post() { super(); }
-
-    public Post(User user, String content) {
-        this.user = user;
-        this.content = content;
-        this.likes = 0;
-    }
 }

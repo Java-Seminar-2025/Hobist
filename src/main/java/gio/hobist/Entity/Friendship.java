@@ -3,42 +3,32 @@ package gio.hobist.Entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Check;
+
+import java.util.UUID;
 
 @Entity
 @Getter
 @Setter
 @Table(name = "friendship")
-@Check(constraints = "id_requesting_user < id_reciving_user")
 public class Friendship {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue
+    private UUID id;
 
     @ManyToOne
-    @JoinColumn(name = "id_requesting_user")
-    private User requestingUser;
+    @JoinColumn(name = "id_user1")
+    private User user1;
 
     @ManyToOne
-    @JoinColumn(name = "id_reciving_user")
-    private User recivingUser;
+    @JoinColumn(name = "id_user2")
+    private User user2;
 
     @Enumerated(EnumType.STRING)
-    private Status status = Status.pending;
+    private Status status;
 
-    @Column(columnDefinition = "jsonb")
-    private String chat;
+    @Column(name = "date_of_befriending")
+    private java.sql.Date dateOfBefriending;
 
     public Friendship() { super(); }
-
-    public Friendship(User requester, User receiver, Status status) {
-        this.requestingUser = requester;
-        this.recivingUser = receiver;
-        this.status = status;
-    }
-
-    public enum Status {
-        pending, accepted, blocked
-    }
 }
