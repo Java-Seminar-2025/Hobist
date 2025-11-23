@@ -3,7 +3,6 @@ package gio.hobist.Entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.UUID;
 
@@ -12,20 +11,39 @@ import java.util.UUID;
 @Setter
 @Table(name = "\"user\"")
 public class User {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(columnDefinition = "uuid")
+    @GeneratedValue
     private UUID id;
+
     private String name;
+
     private String surname;
-    private String e_mail;
+
+    @Column(name = "e_mail")
+    private String email;
+
     private String password;
 
-    public User(){ super();}
-    public User(@RequestParam String userName,@RequestParam String userSurname,@RequestParam String email,@RequestParam String password) {
-        this.name = userName;
-        this.surname = userSurname;
-        this.e_mail = email;
-        this.password = password;
-    }
+    @ManyToOne
+    @JoinColumn(name = "id_country")
+    private Country country;
+
+    @ManyToOne
+    @JoinColumn(name = "id_city")
+    private City city;
+
+    @Column(name = "number_of_posts")
+    private Integer numberOfPosts;
+
+    @Column(name = "number_of_friends")
+    private Integer numberOfFriends;
+
+    @Column(name = "user_page_description")
+    private String userPageDescription;
+
+    @Column(name = "profile_image_raw_data")
+    private byte[] profileImageRawData;
+
+    public User() { super(); }
 }

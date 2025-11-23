@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Entity
 @Getter
 @Setter
@@ -11,14 +13,14 @@ import lombok.Setter;
 public class Hobby {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue
+    private UUID id;
 
-    private String hobby;
+    private String name;
 
     public Hobby() { super(); }
 
-    public Hobby(String hobby) {
-        this.hobby = hobby;
+    public Hobby(String name) {
+        this.name = name;
     }
 }
