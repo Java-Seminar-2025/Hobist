@@ -3,6 +3,7 @@ package gio.hobist.Entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.UUID;
 
@@ -46,4 +47,11 @@ public class User {
     private byte[] profileImageRawData;
 
     public User() { super(); }
+
+    public User( String userName, String userSurname,  String email,  String password) {//M.G: this constructor is in use don't delete it again!!
+        this.name = userName;
+        this.surname = userSurname;
+        this.email = email;
+        this.password = password;
+    }
 }

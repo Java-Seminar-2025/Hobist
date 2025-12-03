@@ -7,9 +7,9 @@ import java.util.UUID;
 
 public interface ContentLikeRepository extends JpaRepository<ContentLike, UUID> {
 
-    List<ContentLike> findByIdPost(UUID postId);
+    List<ContentLike> findByPostId(UUID postId);
 
-    List<ContentLike> findByIdComment(UUID commentId);
+    List<ContentLike> findByCommentId(UUID commentId);
 
-    List<ContentLike> findByIdUser(UUID userId);
+    List<ContentLike> findByUserId(UUID userId);
 }

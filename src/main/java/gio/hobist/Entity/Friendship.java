@@ -1,5 +1,6 @@
 package gio.hobist.Entity;
 
+import gio.hobist.Enum.Status;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

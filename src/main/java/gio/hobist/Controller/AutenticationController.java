@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AutenticationController {
 
 
-    @RequestMapping(path="/")//in case of no session redirects to login
+    @RequestMapping(path="/")//in case of no session redirects to log in
     public String redirect(HttpSession session, Model model) {
         AutenticationDto currentUser = (AutenticationDto) session.getAttribute("currentUser");
         if (session.getAttribute("userId") == null) {
@@ -64,7 +64,7 @@ public class AutenticationController {
                 session.setAttribute("userName",validUser.getName());
                 session.setAttribute("userId",validUser.getId());
 
-                return "redirect:/home";
+                return "redirect:/"; // M.G: this part used to be " return "redirect:/home"; " but "home" part isn't finished. commented out because it crashed application
         }
         catch (Exception e){
             System.out.println(e.getMessage());//for testing, delete later
@@ -77,16 +77,17 @@ public class AutenticationController {
     }
 
 
+// M.G: unfinished
 
-    @GetMapping(path="/home")
-    public String home(Model model){
-        List<Post> feedPosts = postService.findAllPosts(); // treba mi ova funkcija u service layeru da mogu ic kroz postove
-        model.addAttribute("feed", feedPosts);
-
-        var currentUser = userService.getCurrentAutenthicatedUser();  // i ova isto mi treba
-        model.addAttribute("user", currentUser);
-
-        return "homePage.html";
-    }
-
+//    @GetMapping(path="/home")
+//    public String home(Model model){
+//        List<Post> feedPosts = postService.findAllPosts(); // treba mi ova funkcija u service layeru da mogu ic kroz postove
+//        model.addAttribute("feed", feedPosts);
+//
+//        var currentUser = userService.getCurrentAutenthicatedUser();  // i ova isto mi treba
+//        model.addAttribute("user", currentUser);
+//
+//        return "homePage.html";
+//    }
+//
 }

@@ -15,7 +15,7 @@ public class AutenticationDto {
     private UUID id;
     private String name;
     private String surname;
-    private String e_mail;
+    private String email;
    private String password;
    private String confirmPassword;
 
@@ -23,7 +23,7 @@ public class AutenticationDto {
         id=null;
         name=null;
         surname=null;
-        e_mail=null;
+        email =null;
         password=null;
         confirmPassword=null;
     }
