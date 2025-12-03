@@ -48,8 +48,8 @@
         <div class="feed">
             <div th:each="post: ${feed}" class="post-card">
                 <div class="post-card__header">
-                    <img th:src="@{${post.user.profilePicture}}" class="profile-photo">
-                    <span th:text="${post.user.name}"></span>
+                    <img th:src="@{${user.profilePicture}}" class="profile-photo">
+                    <span th:text="${user.name}"></span>
                     <span class="date" th:text="${#dates.format(post.createdAt, 'dd.MM.yyyy HH:mm')}"></span>
                 </div>
                 <div class="post-card__body">
@@ -57,7 +57,7 @@
                     <p th:text="${post.text}"></p>
                 </div>
                 <div class="post-footer">
-                    <span th:text="${post.likes}"></span> likes
+                    <span th:text="${post.likeNumber}"></span> likes
                 </div>
             </div>
         </div>

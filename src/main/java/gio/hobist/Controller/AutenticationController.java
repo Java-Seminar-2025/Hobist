@@ -79,7 +79,13 @@ public class AutenticationController {
 
 
     @GetMapping(path="/home")
-    public String home(){
+    public String home(Model model){
+        List<Post> feedPosts = postService.findAllPosts(); // treba mi ova funkcija u service layeru da mogu ic kroz postove
+        model.addAttribute("feed", feedPosts);
+
+        var currentUser = userService.getCurrentAutenthicatedUser();  // i ova isto mi treba
+        model.addAttribute("user", currentUser);
+
         return "homePage.html";
     }
 
