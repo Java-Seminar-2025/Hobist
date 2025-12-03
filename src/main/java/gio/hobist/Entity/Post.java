@@ -19,7 +19,7 @@ public class Post {
     private String message;
 
     @Column(name = "image_raw_data")
-    private byte[] imageRawData; // promjeni da ima tekst objave i da ima sliku(kao path za sliku u bazi), @{${post.imagePath}} da mogu ovo i ovo: ${post.text}
+    private byte[] imageRawData;
 
     @Column(name = "like_number")
     private Integer likeNumber;

@@ -28,7 +28,7 @@ public class AutenticationService {
         else if(DtoUser.getPassword()==null || DtoUser.getPassword().equals("") ){
             throw new AutenticationException("password missing");
         }
-        else if(DtoUser.getE_mail()==null || DtoUser.getE_mail().equals("") ){
+        else if(DtoUser.getEmail()==null || DtoUser.getEmail().equals("") ){
             throw new AutenticationException("email missing");
         }
         else if(DtoUser.getConfirmPassword()==null || DtoUser.getConfirmPassword().equals("") ){
@@ -45,7 +45,7 @@ public class AutenticationService {
         User user = new User(
                 DtoUser.getName(),
                 DtoUser.getSurname(),
-                DtoUser.getE_mail(),
+                DtoUser.getEmail(),
                 hashedPassword
         );
 
@@ -54,14 +54,14 @@ public class AutenticationService {
 
     public AutenticationDto logInUser(AutenticationDto DtoUser){
 
-        if(DtoUser.getE_mail()==null || DtoUser.getE_mail().equals("") ){
+        if(DtoUser.getEmail()==null || DtoUser.getEmail().equals("") ){
             throw new AutenticationException("email missing");
         }
         else if(DtoUser.getPassword()==null || DtoUser.getPassword().equals("") ){
             throw new AutenticationException("password missing");
        }
 
-        User user =userRepository.getByEmail(DtoUser.getE_mail());
+        User user =userRepository.findByEmail(DtoUser.getEmail());
         if(user==null){
             throw new AutenticationException("Email dosen't exists");
         }

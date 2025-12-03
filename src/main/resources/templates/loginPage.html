@@ -12,7 +12,7 @@
         <form th:action="@{/login}" method="POST" th:object="${user}"  autocomplete="off">
             <h1 class="heading">Login here</h1>
             <label>Email</label>
-            <input type="email" th:field="*{e_mail}" class="input-controll" placeholder="Your email address" required>
+            <input type="email" th:field="*{email}" class="input-controll" placeholder="Your email address" required>
 
             <label>Password</label>
             <input type="password" th:field="*{password}" class="input-controll" placeholder="Your password" required>
