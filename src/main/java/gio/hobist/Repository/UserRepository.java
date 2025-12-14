@@ -9,6 +9,8 @@ import java.lang.Integer;
 public interface UserRepository extends JpaRepository<User, UUID> {
     User findByEmail(String email);
 
+    User findByid(UUID Id);
+
     List<User> findByCountryId(Integer countryId);
 
     List<User> findByCityId(Integer cityId);

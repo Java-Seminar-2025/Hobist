@@ -8,7 +8,7 @@
 //
 //public interface HobbyUserRepository extends JpaRepository<HobbyUser, HobbyUserId> {
 //
-//    List<HobbyUser> findByUserId(UUID userId);
+//    List<HobbyUser> findByUid(UUID userId);
 //
 //    List<HobbyUser> findByHobbyId(UUID hobbyId);
 //}

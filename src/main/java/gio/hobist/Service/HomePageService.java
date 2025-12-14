@@ -1,0 +1,44 @@
+package gio.hobist.Service;
+
+import gio.hobist.Dto.PostDto;
+import gio.hobist.Entity.Post;
+import gio.hobist.Repository.PostRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Base64;
+import java.util.stream.Collectors;
+
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+@Service
+public class HomePageService {
+
+    @Autowired
+    private PostRepository postRepository;
+
+    public HomePageService(PostRepository postRepository) {
+        this.postRepository = postRepository;
+
+    }
+
+   public List<PostDto> findAllPosts(UUID userId){
+       List<Post> postList=postRepository.findAllById(userId);
+
+       return postList.stream().map(post -> new PostDto(
+               post.getId(),
+               post.getMessage(),
+               Base64.getEncoder().encodeToString(
+                       ( post.getImageRawData()==null ) ? new byte[0] : post.getImageRawData()//quick fix for null error handling
+                    ),
+               post.getLikeNumber()
+       )).toList();
+
+
+
+   }
+
+}
