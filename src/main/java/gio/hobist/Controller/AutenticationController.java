@@ -6,10 +6,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -64,7 +61,7 @@ public class AutenticationController {
                 session.setAttribute("userName",validUser.getName());
                 session.setAttribute("userId",validUser.getId());
 
-                return "redirect:/"; // M.G: this part used to be " return "redirect:/home"; " but "home" part isn't finished. commented out because it crashed application
+                return "redirect:/home";
         }
         catch (Exception e){
             System.out.println(e.getMessage());//for testing, delete later
@@ -75,19 +72,4 @@ public class AutenticationController {
 
 
     }
-
-
-// M.G: unfinished
-
-//    @GetMapping(path="/home")
-//    public String home(Model model){
-//        List<Post> feedPosts = postService.findAllPosts(); // treba mi ova funkcija u service layeru da mogu ic kroz postove
-//        model.addAttribute("feed", feedPosts);
-//
-//        var currentUser = userService.getCurrentAutenthicatedUser();  // i ova isto mi treba
-//        model.addAttribute("user", currentUser);
-//
-//        return "homePage.html";
-//    }
-//
 }

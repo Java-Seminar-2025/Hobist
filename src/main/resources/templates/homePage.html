@@ -38,8 +38,8 @@
                     </a>
                 </li>
                 <li class="navElementImg">
-<!--                      <a href=""><img  th:src="@{${user.profilePicture}}" class="profileNavImg" alt="">            M.G: commented out because it isn't finished-->
-                    <span class="imgSpan">Proifle</span>
+                      <a href=""><img  th:src="@{${'data:image/jpeg;charset=utf-8;base64,' +user.profilePicture}}" class="profileNavImg" alt="pic">
+                    <span class="imgSpan">Profile</span>
                     </a>
                 </li>
             </ul>
@@ -48,13 +48,13 @@
         <div class="feed">
             <div th:each="post: ${feed}" class="post-card">
                 <div class="post-card__header">
-                    <img th:src="@{${user.profilePicture}}" class="profile-photo">
+                    <img th:src="@{${'data:image/jpeg;charset=utf-8;base64,' +user.profilePicture}}" class="profile-photo">
                     <span th:text="${user.name}"></span>
                     <span class="date" th:text="${#dates.format(post.createdAt, 'dd.MM.yyyy HH:mm')}"></span>
                 </div>
                 <div class="post-card__body">
-                    <img th:if="${post.imagePath != null}" th:src="@{${post.imagePath}}" class="post-image">
-                    <p th:text="${post.text}"></p>
+                    <img th:if="${post.rawImage != null}" th:src="@{${post.rawImage}}" class="post-image">
+                    <p th:text="${post.message}"></p>
                 </div>
                 <div class="post-footer">
                     <span th:text="${post.likeNumber}"></span> likes

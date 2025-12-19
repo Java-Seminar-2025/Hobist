@@ -16,6 +16,10 @@ public class AutenticationService {
     @Autowired
     private UserRepository userRepository;
 
+    public AutenticationService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
 
     public void signUpUser(AutenticationDto DtoUser){
         if(DtoUser.getName()==null || DtoUser.getName().equals("") ){
@@ -32,7 +36,7 @@ public class AutenticationService {
             throw new AutenticationException("email missing");
         }
         else if(DtoUser.getConfirmPassword()==null || DtoUser.getConfirmPassword().equals("") ){
-            throw new AutenticationException("confirmed passwrd missing");
+            throw new AutenticationException("confirmed password missing");
         }
         else if(!DtoUser.getPassword().equals(DtoUser.getConfirmPassword())){
             throw new AutenticationException("passwords do not match");
