@@ -7,10 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Base64;
-import java.util.stream.Collectors;
 
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,15 +24,17 @@ public class HomePageService {
     }
 
    public List<PostDto> findAllPosts(UUID userId){
-       List<Post> postList=postRepository.findAllById(userId);
+       List<Post> postList=postRepository.findAllByIdUser(userId);
 
        return postList.stream().map(post -> new PostDto(
                post.getId(),
+               post.getIdUser(),
                post.getMessage(),
                Base64.getEncoder().encodeToString(
                        ( post.getImageRawData()==null ) ? new byte[0] : post.getImageRawData()//quick fix for null error handling
                     ),
-               post.getLikeNumber()
+               post.getLikeNumber(),
+               post.getCreatedAt()
        )).toList();
 
 

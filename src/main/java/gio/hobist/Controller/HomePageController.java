@@ -26,7 +26,6 @@ public class HomePageController {
     }
 
 
-// M.G: unfinished
 
     @GetMapping(path="/home")
     public String home(Model model, HttpSession session){

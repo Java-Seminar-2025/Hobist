@@ -8,6 +8,6 @@ import java.util.UUID;
 
 public interface PostRepository extends JpaRepository<Post, UUID> {
 
-    List<Post> findAllById(UUID Id);
+    List<Post> findAllByIdUser(UUID Id);
 
 }
