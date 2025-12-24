@@ -24,14 +24,14 @@ public class HomePageService {
     }
 
    public List<PostDto> findAllPosts(UUID userId){
-       List<Post> postList=postRepository.findAllByIdUser(userId);
+       var postList=postRepository.findAllByIdUser(userId);
 
        return postList.stream().map(post -> new PostDto(
                post.getId(),
                post.getIdUser(),
                post.getMessage(),
                Base64.getEncoder().encodeToString(
-                       ( post.getImageRawData()==null ) ? new byte[0] : post.getImageRawData()//quick fix for null error handling
+                       ( post.getImage()==null ) ? new byte[0] : post.getImage()//quick fix for null error handling
                     ),
                post.getLikeNumber(),
                post.getCreatedAt()

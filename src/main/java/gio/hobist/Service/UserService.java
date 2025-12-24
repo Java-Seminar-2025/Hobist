@@ -11,6 +11,7 @@ import java.util.UUID;
 
 @Service
 public class UserService {
+
     @Autowired
     private UserRepository userRepository;
 
@@ -19,7 +20,7 @@ public class UserService {
     }
 
     public UserDto getCurrentAutenthicatedUser(UUID userId){
-       User user= userRepository.findByid(userId);
+       var user= userRepository.findByid(userId);
 
         return new UserDto(user.getName(),
                 null,

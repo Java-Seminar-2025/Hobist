@@ -1,7 +1,6 @@
 package gio.hobist.Controller;
 
 import gio.hobist.Dto.PostDto;
-import gio.hobist.Entity.Post;
 import gio.hobist.Service.HomePageService;
 import gio.hobist.Service.UserService;
 import jakarta.servlet.http.HttpSession;
