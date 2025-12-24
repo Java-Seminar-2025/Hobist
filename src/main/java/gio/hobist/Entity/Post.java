@@ -22,8 +22,8 @@ public class Post {
 
     private String message;
 
-    @Column(name = "image_raw_data")
-    private byte[] imageRawData;
+    @Column(name = "image")
+    private byte[] image;
 
     @Column(name = "like_number")
     private Integer likeNumber;

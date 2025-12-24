@@ -43,10 +43,10 @@ public class AutenticationService {
         }
 
         PasswordHasher hashingObject=new PasswordHasher();
-        String hashedPassword=hashingObject.hashPassword(DtoUser.getPassword());
+        var hashedPassword=hashingObject.hashPassword(DtoUser.getPassword());
 
 
-        User user = new User(
+        var user = new User(
                 DtoUser.getName(),
                 DtoUser.getSurname(),
                 DtoUser.getEmail(),

@@ -43,8 +43,8 @@ public class User {
     @Column(name = "user_page_description")
     private String userPageDescription;
 
-    @Column(name = "profile_image_raw_data")
-    private byte[] profileImageRawData;
+    @Column(name = "profile_image")
+    private byte[] profile_image;
 
     public User() { super(); }
 
