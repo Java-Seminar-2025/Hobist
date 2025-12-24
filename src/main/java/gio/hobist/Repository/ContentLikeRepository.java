@@ -12,4 +12,12 @@ public interface ContentLikeRepository extends JpaRepository<ContentLike, UUID> 
     List<ContentLike> findByCommentId(UUID commentId);
 
     List<ContentLike> findByUserId(UUID userId);
+    
+    ContentLike findByPostIdAndUserId(UUID postId, UUID userId);
+    
+    ContentLike findByCommentIdAndUserId(UUID commentId, UUID userId);
+    
+    int countByPostId(UUID postId);
+    
+    int countByCommentId(UUID commentId);
 }

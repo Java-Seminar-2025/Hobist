@@ -20,4 +20,12 @@ public class PostDto {
     private String rawImage;//dto will get base64-encoded string for display of image
     private Integer likeNumber;
     private Timestamp createdAt;
+
+    public UUID getIdUser() {
+        return UserId;
+    }
+
+    public Object getContent() {
+        return message;
+    }
 }
