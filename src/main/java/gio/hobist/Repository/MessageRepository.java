@@ -10,6 +10,4 @@ public interface MessageRepository extends JpaRepository<Message, UUID> {
     List<Message> findByFriendshipId(UUID friendshipId);
 
     List<Message> findByUserId(UUID userId);
-    
-    List<Message> findByFriendshipIdOrderByTimeSentAsc(UUID friendshipId);
 }

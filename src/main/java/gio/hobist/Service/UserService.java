@@ -30,22 +30,4 @@ public class UserService {
                );//M.G: this string is base64 string used for picture testing at moment
 
     }
-
-    public void deleteUser(UUID userId) {
-        userRepository.deleteById(userId);
-    }
-
-    public UserDto updateUser(UUID userId, UserDto userDto) {
-        User user = userRepository.findByid(userId);
-        if (user != null) {
-            user.setName(userDto.getName());
-            user.setEmail(userDto.getEmail());
-            if (userDto.getPassword() != null) {
-                user.setPassword(userDto.getPassword());
-            }
-            userRepository.save(user);
-            return new UserDto(user.getName(), null, user.getEmail(), null);
-        }
-        return null;
-    }
 }

@@ -31,4 +31,5 @@ public class Post {
     @Column(name="created_at")
     private Timestamp createdAt;
 
+    public Post() { super(); }
 }
