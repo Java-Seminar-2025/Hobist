@@ -20,6 +20,9 @@ public class Comment {
     @JoinColumn(name = "id_post")
     private Post post;
 
+    @Column(name = "id_user")
+    private UUID userId;
+
     private String message;
 
     @Column(name = "like_number")

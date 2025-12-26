@@ -10,4 +10,7 @@ public interface HobbyRepository extends JpaRepository<Hobby, UUID> {
     Hobby findByName(String name);
     
     List<Hobby> findByNameContainingIgnoreCase(String name);
+
+    List<Hobby> findByUserId(UUID userId);
+
 }
