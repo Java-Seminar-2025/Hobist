@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Timestamp;
 import java.util.UUID;
 
 @Entity
@@ -16,13 +17,19 @@ public class Post {
     @GeneratedValue
     private UUID id;
 
+    @Column(name = "id_user")
+    private UUID idUser;
+
     private String message;
 
-    @Column(name = "image_raw_data")
-    private byte[] imageRawData; // promjeni da ima tekst objave i da ima sliku(kao path za sliku u bazi), @{${post.imagePath}} da mogu ovo i ovo: ${post.text}
+    @Column(name = "image")
+    private byte[] image;
 
     @Column(name = "like_number")
     private Integer likeNumber;
+
+    @Column(name="created_at")
+    private Timestamp createdAt;
 
     public Post() { super(); }
 }

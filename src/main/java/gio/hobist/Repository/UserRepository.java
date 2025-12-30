@@ -4,13 +4,16 @@ import gio.hobist.Entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.UUID;
 import java.util.List;
+import java.lang.Integer;
 
 public interface UserRepository extends JpaRepository<User, UUID> {
-    User findByEMail(String e_mail);
+    User findByEmail(String email);
 
-    List<User> findByIdCountry(Integer idCountry);
+    User findByid(UUID Id);
 
-    List<User> findByIdCity(Integer idCity);
+    List<User> findByCountryId(Integer countryId);
+
+    List<User> findByCityId(Integer cityId);
 
     List<User> findByNameAndSurname(String name, String surname);
 }

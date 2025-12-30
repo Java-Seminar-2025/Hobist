@@ -16,6 +16,10 @@ public class AutenticationService {
     @Autowired
     private UserRepository userRepository;
 
+    public AutenticationService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
 
     public void signUpUser(AutenticationDto DtoUser){
         if(DtoUser.getName()==null || DtoUser.getName().equals("") ){
@@ -28,24 +32,24 @@ public class AutenticationService {
         else if(DtoUser.getPassword()==null || DtoUser.getPassword().equals("") ){
             throw new AutenticationException("password missing");
         }
-        else if(DtoUser.getE_mail()==null || DtoUser.getE_mail().equals("") ){
+        else if(DtoUser.getEmail()==null || DtoUser.getEmail().equals("") ){
             throw new AutenticationException("email missing");
         }
         else if(DtoUser.getConfirmPassword()==null || DtoUser.getConfirmPassword().equals("") ){
-            throw new AutenticationException("confirmed passwrd missing");
+            throw new AutenticationException("confirmed password missing");
         }
         else if(!DtoUser.getPassword().equals(DtoUser.getConfirmPassword())){
             throw new AutenticationException("passwords do not match");
         }
 
         PasswordHasher hashingObject=new PasswordHasher();
-        String hashedPassword=hashingObject.hashPassword(DtoUser.getPassword());
+        var hashedPassword=hashingObject.hashPassword(DtoUser.getPassword());
 
 
-        User user = new User(
+        var user = new User(
                 DtoUser.getName(),
                 DtoUser.getSurname(),
-                DtoUser.getE_mail(),
+                DtoUser.getEmail(),
                 hashedPassword
         );
 
@@ -54,14 +58,14 @@ public class AutenticationService {
 
     public AutenticationDto logInUser(AutenticationDto DtoUser){
 
-        if(DtoUser.getE_mail()==null || DtoUser.getE_mail().equals("") ){
+        if(DtoUser.getEmail()==null || DtoUser.getEmail().equals("") ){
             throw new AutenticationException("email missing");
         }
         else if(DtoUser.getPassword()==null || DtoUser.getPassword().equals("") ){
             throw new AutenticationException("password missing");
        }
 
-        User user =userRepository.getByEmail(DtoUser.getE_mail());
+        User user =userRepository.findByEmail(DtoUser.getEmail());
         if(user==null){
             throw new AutenticationException("Email dosen't exists");
         }

@@ -6,17 +6,14 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
 public class AutenticationController {
 
 
-    @RequestMapping(path="/")//in case of no session redirects to login
+    @RequestMapping(path="/")//in case of no session redirects to log in
     public String redirect(HttpSession session, Model model) {
         AutenticationDto currentUser = (AutenticationDto) session.getAttribute("currentUser");
         if (session.getAttribute("userId") == null) {
@@ -75,18 +72,4 @@ public class AutenticationController {
 
 
     }
-
-
-
-    @GetMapping(path="/home")
-    public String home(Model model){
-        List<Post> feedPosts = postService.findAllPosts(); // treba mi ova funkcija u service layeru da mogu ic kroz postove
-        model.addAttribute("feed", feedPosts);
-
-        var currentUser = userService.getCurrentAutenthicatedUser();  // i ova isto mi treba
-        model.addAttribute("user", currentUser);
-
-        return "homePage.html";
-    }
-
 }

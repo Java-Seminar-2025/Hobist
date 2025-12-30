@@ -1,0 +1,18 @@
+package gio.hobist.Dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class UserDto {
+    private String name;
+    private String password;
+    private String email;
+    private String profilePicture;//dto will get base64-encoded string for display of image
+
+}

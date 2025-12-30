@@ -26,11 +26,11 @@ public class Message {
 
     private String message;
 
-    @Column(name = "raw_data_name")
-    private String rawDataName;
+    @Column(name = "file_name")
+    private String file_name;
 
-    @Column(name = "raw_data")
-    private byte[] rawData;
+    @Column(name = "file")
+    private byte[] file;
 
     @Column(name = "time_sent")
     private java.time.OffsetDateTime timeSent;
