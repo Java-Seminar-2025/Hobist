@@ -38,7 +38,7 @@
                     </a>
                 </li>
                 <li class="navElementImg">
-                      <a href=""><img  th:src="@{${'data:image/jpeg;charset=utf-8;base64,' +user.profilePicture}}" class="profileNavImg" alt="pic">
+                      <a href=""><img th:src="@{/media/{img}(img=${user.profilePicture})}" class="profileNavImg" alt="pic">
                     <span class="imgSpan">Profile</span>
                     </a>
                 </li>
@@ -48,12 +48,12 @@
         <div class="feed">
             <div th:each="post: ${feed}" class="post-card">
                 <div class="post-card__header">
-                    <img th:src="@{${'data:image/jpeg;charset=utf-8;base64,' +user.profilePicture}}" class="profile-photo">
+                    <img th:src="@{/media/{img}(img=${user.profilePicture})}" class="profile-photo">
                     <span th:text="${user.name}"></span>
                     <span class="date" th:text="${#dates.format(post.createdAt, 'dd.MM.yyyy HH:mm')}"></span>
                 </div>
                 <div class="post-card__body">
-                    <img th:if="${post.rawImage != null}" th:src="@{${post.rawImage}}" class="post-image">
+                    <img th:if="${post.rawImage != null}" th:src="@{/media/{img}(img=${post.rawImage})}" class="post-image">
                     <p th:text="${post.message}"></p>
                 </div>
                 <div class="post-footer">

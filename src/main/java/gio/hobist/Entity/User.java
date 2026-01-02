@@ -44,7 +44,7 @@ public class User {
     private String userPageDescription;
 
     @Column(name = "profile_image")
-    private byte[] profile_image;
+    private String profile_image;
 
     public User() { super(); }
 

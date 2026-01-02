@@ -23,7 +23,7 @@ public class Post {
     private String message;
 
     @Column(name = "image")
-    private byte[] image;
+    private String image;
 
     @Column(name = "like_number")
     private Integer likeNumber;

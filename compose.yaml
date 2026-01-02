@@ -7,8 +7,5 @@ services:
       - POSTGRES_PASSWORD=mypassword
     ports:
       - '5432:5432'
-    volumes:
-      - uploads:/media
-
-volumes:
-  uploads:
+#    volumes: M.G:not in use for now
+#      - ./uploads:/media
