@@ -10,6 +10,9 @@
     <title>Navbar</title>
 </head>
 <body>
+
+<nav th:replace="~{common/navbar :: navbar}"></nav>
+
 <nav id="navbar" th:fragment="navbar">
     <ul class="navTable">
         <li class="navElement">
@@ -19,19 +22,19 @@
             </a>
         </li>
         <li class="navElement">
-            <button class="dropdown">
+            <a href="searchPage.html">
                 <i class="fa-solid fa-magnifying-glass fa-3x"></i>
                 <span>Search</span>
-            </button>
+            </a>
         </li>
         <li class="navElement">
-            <a href="">
+            <a href="chat.html">
                 <i class="fa-solid fa-inbox fa-3x"></i>
                 <span>Chat</span>
             </a>
         </li>
         <li class="navElement">
-            <a href="">
+            <a href="notificationsPage.html">
                 <i class="fa-solid fa-bell fa-3x"></i>
                 <span>Notifications</span>
             </a>
