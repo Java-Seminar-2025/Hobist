@@ -13,6 +13,5 @@ public class UserDto {
     private String name;
     private String password;
     private String email;
-    private String profilePicture;//dto will get base64-encoded string for display of image
-
+    private String profilePicture;
 }

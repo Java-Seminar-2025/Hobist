@@ -13,7 +13,7 @@ public class PasswordHasher {
     public static boolean verifyPassword(String password,String hashedPassword){
 //        password= BCrypt.withDefaults().hashToString(12,password.toCharArray());
 
-        BCrypt.Result result= BCrypt.verifyer().verify(password.toCharArray(),hashedPassword.toCharArray());
+        var result= BCrypt.verifyer().verify(password.toCharArray(),hashedPassword.toCharArray());
 
         return result.verified;
     }
