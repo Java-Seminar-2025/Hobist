@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public interface HobbyUserRepository extends JpaRepository<HobbyUser, HobbyUserId> {
 
-    List<HobbyUser> findByUserid(UUID userId);
+    List<HobbyUser> findByUserId(UUID userId);
 
     List<HobbyUser> findByHobbyId(UUID hobbyId);
 }

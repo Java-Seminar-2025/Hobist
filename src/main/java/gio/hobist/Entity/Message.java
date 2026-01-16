@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Timestamp;
 import java.util.UUID;
 
 @Entity
@@ -30,10 +31,10 @@ public class Message {
     private String file_name;
 
     @Column(name = "file")
-    private byte[] file;
+    private String file;
 
     @Column(name = "time_sent")
-    private java.time.OffsetDateTime timeSent;
+    private Timestamp timeSent;
 
     public Message() { super(); }
 }
