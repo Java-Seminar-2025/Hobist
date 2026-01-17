@@ -1,5 +1,6 @@
 package gio.hobist.Controller;
 
+import gio.hobist.Service.ChatService;
 import gio.hobist.Service.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -17,25 +18,27 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ChatController {
 
-//    private final ChatService chatService;
+    @Autowired
+    private final ChatService chatService;
     @Autowired
     private final UserService userService;
 
 
-    @GetMapping("/{FriendId}")
-    public String openChat(HttpSession session, @PathVariable Long friendId, Model model) {
+    @GetMapping("/{friendId}")
+    public String openChat(HttpSession session, @PathVariable UUID friendId, Model model) {
 
-//
-//        model.addAttribute("activeUser",
-//                userService.getById(friendId));
-//
-//        model.addAttribute("messages",
-//                chatService.getMessagesWith(friendId));
+
+        model.addAttribute("activeUser",
+                userService.getUser(friendId));
 
         var userId=(UUID)session.getAttribute("userId");
-        model.addAttribute("userId",
-                userService.getCurrentAutenthicatedUser(userId));
+        model.addAttribute("user",
+                userService.getUser(userId));
 
-        return "chat";
+        var friendship=chatService.getFriendshipId(userId,friendId);
+        model.addAttribute("messages",
+                chatService.getMessages(friendship.getId()));
+
+        return "common/chat.html";
     }
 }

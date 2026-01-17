@@ -1,6 +1,5 @@
 package gio.hobist.Controller;
 
-import gio.hobist.Dto.PostDto;
 import gio.hobist.Service.HomePageService;
 import gio.hobist.Service.UserService;
 import jakarta.servlet.http.HttpSession;
@@ -8,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -36,7 +34,7 @@ public class HomePageController {
         var feedPosts = homePageService.findAllPosts(userId);
         model.addAttribute("feed", feedPosts);
 
-        var currentUser = userService.getCurrentAutenthicatedUser(userId);
+        var currentUser = userService.getUser(userId);
         model.addAttribute("user", currentUser);
         return "homePage.html";
     }

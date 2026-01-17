@@ -7,5 +7,5 @@ import java.util.UUID;
 
 public interface FriendshipRepository extends JpaRepository<Friendship, UUID> {
 
-    List<Friendship> findByUser1IdOrUser2Id(UUID user1, UUID user2);
+    Friendship findByUser1IdAndUser2Id(UUID user1, UUID user2);
 }
