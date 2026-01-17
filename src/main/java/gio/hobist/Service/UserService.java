@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,7 +20,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public UserDto getCurrentAutenthicatedUser(UUID userId){
+    public UserDto getUser(UUID userId){
        var user= userRepository.findByid(userId);
 
         DbFileTransferController dbFileTransfer = new DbFileTransferController();
