@@ -41,7 +41,7 @@
         </li>
         <li class="navElementImg">
             <a href="">
-                <img  th:src="@{${user.profilePicture}}" class="profileNavImg" alt="">
+                <img  th:src="@{/media/{img}(img=${user.profilePicture})}" class="profileNavImg" alt="">
                 <span class="imgSpan">Profile</span>
             </a>
         </li>
