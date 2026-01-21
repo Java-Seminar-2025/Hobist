@@ -1,11 +1,18 @@
 package gio.hobist.Repository;
 
+import gio.hobist.Dto.FriendshipDto;
 import gio.hobist.Entity.Friendship;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
 import java.util.List;
 import java.util.UUID;
 
 public interface FriendshipRepository extends JpaRepository<Friendship, UUID> {
 
+
+    @Query("SELECT f FROM Friendship f WHERE " +
+            "(f.user1.id = :user1 AND f.user2.id = :user2) OR " +
+            "(f.user1.id = :user2 AND f.user2.id = :user1)")
     Friendship findByUser1IdAndUser2Id(UUID user1, UUID user2);
 }

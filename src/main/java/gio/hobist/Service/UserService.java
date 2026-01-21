@@ -35,7 +35,8 @@ public class UserService {
              imageFileName=null;
         }
 
-       return new UserDto(user.getName(),
+       return new UserDto(user.getId(),
+               user.getName(),
                 null,
                 user.getEmail(),
                imageFileName
@@ -59,7 +60,7 @@ public class UserService {
 
         var finalImageFileName = imageFileName; //M.G: this var was necessary for lambda expression according to the compiler error. Error: "Variable used in lambda expression should be final or effectively final"
 
-        return users.stream().map(user-> new UserDto(
+        return users.stream().map(user-> new UserDto(user.getId(),
                user.getName(),
                null,
                user.getEmail(),

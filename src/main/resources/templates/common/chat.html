@@ -10,19 +10,22 @@
 <body>
 <nav th:replace="~{common/navbar :: navbar}"></nav>
 <div id="chat">
-    <div id="messages">
-        <div th:each="m : ${messages}"
-             th:class="${m.senderId == myId} ? 'me' : 'them'">
-            <span th:text="${m.text}"></span>
-        </div>
-    </div>
+        <iframe th:src="@{/chat/{friendId}/messages(friendId=${activeUser.id})}" style="width:100%; height:50%;"  >
+        </iframe>
 
-    <input id="messageInput" type="text">
-    <button onclick="send()">Send</button>
+    <form th:action="@{/chat/{friendId}/send(friendId=${activeUser.id})}" method="post">
+        <input id="messageInput" type="text" name="text">
+        <button type="submit">send</button>
+    </form>
+
+    <br><br>
+    <form th:action="@{/chat/{friendId}/messagesHistory(friendId=${activeUser.id})}" method="get">
+        <button  type="submit">chat history</button>
+    </form>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/sockjs-client/dist/sockjs.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/stompjs/lib/stomp.min.js"></script>
+<!--<script src="https://cdn.jsdelivr.net/npm/sockjs-client/dist/sockjs.min.js"></script>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/stompjs/lib/stomp.min.js"></script>-->
 
 
 </body>
