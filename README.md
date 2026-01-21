@@ -21,6 +21,6 @@
     - login/signup
     
 ### current development
-    - live chat implemented with web socket
+    - chat 
     - search page for other users
     - personal info customisation
