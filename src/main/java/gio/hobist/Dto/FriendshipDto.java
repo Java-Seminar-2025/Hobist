@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.UUID;
 
 @Getter
@@ -18,7 +18,7 @@ public class FriendshipDto {
     private UUID user1Id;
     private UUID user2Id;
     private Status status;
-    private Date dateOfBefriending;
+    private Timestamp dateOfBefriending;
 
 
 }

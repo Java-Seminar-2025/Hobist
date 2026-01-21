@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Timestamp;
+import java.time.LocalTime;
 import java.util.UUID;
 
 @Getter
@@ -19,7 +20,7 @@ public class MessageDto {
     private String message;
     private String fileName;
     private String filePath;
-    private Timestamp timeSent;
+    private String timeSent;
 
 
 }

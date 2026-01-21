@@ -2,14 +2,17 @@ package gio.hobist.Entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.UUID;
 
 @Entity
 @Getter
 @Setter
+@RequiredArgsConstructor
 @Table(name = "message")
 public class Message {
 
@@ -33,8 +36,7 @@ public class Message {
     @Column(name = "file")
     private String file;
 
-    @Column(name = "time_sent")
+    @Column(name = "time_sent",insertable = false,nullable = false)
     private Timestamp timeSent;
 
-    public Message() { super(); }
 }
