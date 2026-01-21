@@ -18,7 +18,9 @@
     in future and .yaml file that can run in inteliij IDE (docker must be
     added in intelijj) to set up our postgresql database
     - Homepage with posts ( creating posts is in development)
+    - login/signup
+    
 ### current development
     - live chat implemented with web socket
     - search page for other users
-    -personal info customisation
+    - personal info customisation
