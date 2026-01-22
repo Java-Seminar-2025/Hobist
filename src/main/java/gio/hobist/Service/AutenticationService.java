@@ -65,7 +65,7 @@ public class AutenticationService {
             throw new AutenticationException("password missing");
        }
 
-        User user =userRepository.findByEmail(DtoUser.getEmail());
+        var user =userRepository.findByEmail(DtoUser.getEmail());
         if(user==null){
             throw new AutenticationException("Email dosen't exists");
         }

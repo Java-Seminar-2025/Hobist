@@ -5,15 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="886ecc1f-a9e7-4469-8fb9-8076c32c3b19" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Controller/UserSearchController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/common/chat.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/common/search-results.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/common/searchPage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Controller/DbFileTransferController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Entity/HobbyUserId.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Repository/HobbyUserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/defaultImage.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Controller/ChatController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/common/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/common/navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/homePage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/homePage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gio/hobist/Controller/HomePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Controller/HomePageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gio/hobist/Dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Dto/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gio/hobist/Entity/HobbyUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Entity/HobbyUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gio/hobist/Entity/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Entity/Post.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gio/hobist/Entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gio/hobist/Repository/HobyUserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gio/hobist/Service/AutenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Service/AutenticationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gio/hobist/Service/HomePageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Service/HomePageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gio/hobist/Service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gio/hobist/utils/PasswordHasher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/utils/PasswordHasher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +85,7 @@
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;Spring Boot.HobistApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;IO&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Merging IO&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/ivanodrljin/Documents/Faks/JAVA/Hobist&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -268,7 +276,9 @@
       <workItem from="1767116229129" duration="315000" />
       <workItem from="1767116554039" duration="718000" />
       <workItem from="1767162870281" duration="3076000" />
-      <workItem from="1767533225024" duration="1759000" />
+      <workItem from="1767533225024" duration="2295000" />
+      <workItem from="1768394108096" duration="947000" />
+      <workItem from="1768561845565" duration="107000" />
     </task>
     <servers />
   </component>

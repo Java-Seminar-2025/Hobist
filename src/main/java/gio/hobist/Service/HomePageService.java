@@ -1,12 +1,10 @@
 package gio.hobist.Service;
 
 import gio.hobist.Dto.PostDto;
-import gio.hobist.Entity.Post;
 import gio.hobist.Repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Base64;
 
 
 import java.util.List;
@@ -30,9 +28,7 @@ public class HomePageService {
                post.getId(),
                post.getIdUser(),
                post.getMessage(),
-               Base64.getEncoder().encodeToString(
-                       ( post.getImage()==null ) ? new byte[0] : post.getImage()//quick fix for null error handling
-                    ),
+               post.getImage(),
                post.getLikeNumber(),
                post.getCreatedAt()
        )).toList();
