@@ -4,7 +4,7 @@
     Theme of this project is a social network app for people that would like
     to enjoy their hobby's with other people
 
-### Features
+### Planned features
    * Choice of multiple hobby's that each will intruduce you to community of new people
    * befriending/blocking option
    * live chat
@@ -19,8 +19,9 @@
     added in intelijj) to set up our postgresql database
     - Homepage with posts ( creating posts is in development)
     - login/signup
+    - hashed passwords and encrypted messages for privacy and security
+    - chat
     
 ### current development
-    - chat 
     - search page for other users
     - personal info customisation
