@@ -38,6 +38,7 @@ public class UserService {
        return new UserDto(user.getId(),
                user.getName(),
                 null,
+                null,
                 user.getEmail(),
                imageFileName
                );
@@ -46,7 +47,7 @@ public class UserService {
     public List<UserDto> searchByName(String name, String surname){
         var users= userRepository.findByNameAndSurname(name,surname);
 
-        DbFileTransferController dbFileTransfer = new DbFileTransferController();
+        var dbFileTransfer = new DbFileTransferController();
         String imageFileName; //not var because of try catch
 
         try {
@@ -62,6 +63,7 @@ public class UserService {
 
         return users.stream().map(user-> new UserDto(user.getId(),
                user.getName(),
+               null,
                null,
                user.getEmail(),
                 finalImageFileName

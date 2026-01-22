@@ -34,5 +34,22 @@ public class DbFileTransferController {
                 .body(resource);
     }
 
+    public String GetDefauldImage() throws FileNotFoundException {
+
+        var dbFileTransfer = new DbFileTransferController();
+        String imageFileName; //not var because of try catch
+
+        try {
+            var image = dbFileTransfer.GetImage("defaultImage.jpg");//M.G: defaultImage.jpg is template for now
+            imageFileName=image.getBody().getFilename();
+        }
+        catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+            imageFileName=null;
+        }
+
+        return imageFileName; //M.G: this var was necessary for lambda expression according to the compiler error. Error: "Variable used in lambda expression should be final or effectively final"
+
+    }
 
 }

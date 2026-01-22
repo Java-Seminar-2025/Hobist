@@ -2,9 +2,10 @@ package gio.hobist.Service;
 
 import gio.hobist.Dto.PostDto;
 import gio.hobist.Repository.PostRepository;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.web.bind.annotation.GetMapping;
 
 
 import java.util.List;
@@ -31,9 +32,7 @@ public class HomePageService {
                post.getLikeNumber(),
                post.getCreatedAt()
        )).toList();
-
-
-
    }
+
 
 }

@@ -1,7 +1,9 @@
 package gio.hobist.Service;
 
+import gio.hobist.Controller.DbFileTransferController;
 import gio.hobist.Dto.FriendshipDto;
 import gio.hobist.Dto.MessageDto;
+import gio.hobist.Dto.UserDto;
 import gio.hobist.Entity.Message;
 import gio.hobist.Repository.FriendshipRepository;
 import gio.hobist.Repository.MessageRepository;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
+import java.io.FileNotFoundException;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.util.List;
@@ -25,7 +28,7 @@ public class ChatService {
     private final FriendshipRepository friendshipRepository;
     private final UserRepository userRepository;
 
-    private final MessageEncryption messageEncryption = new MessageEncryption();
+    private final DbFileTransferController dbFileTransferController=new DbFileTransferController();
 
    public FriendshipDto getFriendshipId(UUID friend1Id, UUID friend2Id) {
        var friendship=friendshipRepository.findByUser1IdAndUser2Id(friend1Id,friend2Id);
@@ -37,6 +40,30 @@ public class ChatService {
               friendship.getDateOfBefriending()
               );
    }
+
+  public List<UserDto> getUsers(UUID userId) {
+       var friendships=friendshipRepository.findByUser1Id(userId);
+
+        return friendships.stream().map(f ->{
+            var other=f.getUser1().getId().equals(userId)?f.getUser2():f.getUser1();
+            try {
+                var picture=(other.getProfile_image()==null) ? dbFileTransferController.GetDefauldImage() :other.getProfile_image();
+
+
+            return new UserDto(
+                 other.getId(),
+                 other.getName(),
+                 other.getSurname(),
+                 null,
+                 null,
+                 picture
+            );
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }).toList();
+
+  }
 
 
     public List<MessageDto> getAllMessages(UUID friendshipId) {
