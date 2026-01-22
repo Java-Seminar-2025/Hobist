@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,7 +20,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public UserDto getCurrentAutenthicatedUser(UUID userId){
+    public UserDto getUser(UUID userId){
        var user= userRepository.findByid(userId);
 
         DbFileTransferController dbFileTransfer = new DbFileTransferController();
@@ -36,7 +35,9 @@ public class UserService {
              imageFileName=null;
         }
 
-       return new UserDto(user.getName(),
+       return new UserDto(user.getId(),
+               user.getName(),
+                null,
                 null,
                 user.getEmail(),
                imageFileName
@@ -46,7 +47,7 @@ public class UserService {
     public List<UserDto> searchByName(String name, String surname){
         var users= userRepository.findByNameAndSurname(name,surname);
 
-        DbFileTransferController dbFileTransfer = new DbFileTransferController();
+        var dbFileTransfer = new DbFileTransferController();
         String imageFileName; //not var because of try catch
 
         try {
@@ -60,8 +61,9 @@ public class UserService {
 
         var finalImageFileName = imageFileName; //M.G: this var was necessary for lambda expression according to the compiler error. Error: "Variable used in lambda expression should be final or effectively final"
 
-        return users.stream().map(user-> new UserDto(
+        return users.stream().map(user-> new UserDto(user.getId(),
                user.getName(),
+               null,
                null,
                user.getEmail(),
                 finalImageFileName

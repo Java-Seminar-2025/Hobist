@@ -3,13 +3,16 @@ package gio.hobist.Entity;
 import gio.hobist.Enum.Status;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Timestamp;
 import java.util.UUID;
 
 @Entity
 @Getter
 @Setter
+@RequiredArgsConstructor
 @Table(name = "friendship")
 public class Friendship {
 
@@ -29,7 +32,6 @@ public class Friendship {
     private Status status;
 
     @Column(name = "date_of_befriending")
-    private java.sql.Date dateOfBefriending;
+    private Timestamp dateOfBefriending;
 
-    public Friendship() { super(); }
 }
