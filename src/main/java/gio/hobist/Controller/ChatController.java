@@ -19,6 +19,21 @@ public class ChatController {
     private final ChatService chatService;
     private final UserService userService;
 
+
+    @GetMapping("/friendList")
+    public String friendList(Model model, HttpSession session){
+
+        var userId=(UUID)session.getAttribute("userId");
+        var friends=chatService.getUsers(userId);
+
+        model.addAttribute("user",
+                userService.getUser(userId));
+
+        model.addAttribute("friends",friends);
+
+        return "common/friendList.html";
+    }
+
     @GetMapping("/{friendId}")
     public String openChat(HttpSession session, @PathVariable UUID friendId, Model model) {
 
