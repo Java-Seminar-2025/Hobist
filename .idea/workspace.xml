@@ -5,23 +5,77 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="886ecc1f-a9e7-4469-8fb9-8076c32c3b19" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Controller/DbFileTransferController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Entity/HobbyUserId.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Repository/HobbyUserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/defaultImage.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gio/hobist/Controller/HomePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Controller/HomePageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gio/hobist/Dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Dto/UserDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gio/hobist/Entity/HobbyUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Entity/HobbyUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gio/hobist/Entity/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Entity/Post.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gio/hobist/Entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gio/hobist/Repository/HobyUserRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gio/hobist/Service/AutenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Service/AutenticationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Dto/CommentDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Dto/FriendshipDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Dto/MessageDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Service/CommentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Service/FriendshipService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Service/MessageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Hobist.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/18e73667-1354-4f3e-af40-293a78b5d7f9.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/18e73667-1354-4f3e-af40-293a78b5d7f9/storage_v2/_src_/database/Hobist.j0IngQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/18e73667-1354-4f3e-af40-293a78b5d7f9/storage_v2/_src_/database/Hobist.j0IngQ/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/18e73667-1354-4f3e-af40-293a78b5d7f9/storage_v2/_src_/database/Hobist.j0IngQ/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/18e73667-1354-4f3e-af40-293a78b5d7f9/storage_v2/_src_/database/postgres.edMnLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/18e73667-1354-4f3e-af40-293a78b5d7f9/storage_v2/_src_/database/postgres.edMnLQ/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/18e73667-1354-4f3e-af40-293a78b5d7f9/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/18e73667-1354-4f3e-af40-293a78b5d7f9/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/data_source_mapping.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gio/hobist/Controller/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Controller/ChatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gio/hobist/Controller/UserSearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Controller/UserSearchController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gio/hobist/Dto/AutenticationDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Dto/AutenticationDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gio/hobist/Dto/PostDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Dto/PostDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gio/hobist/Entity/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Entity/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gio/hobist/Entity/HobbyUserId.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Entity/HobbyUserId.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gio/hobist/Entity/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Entity/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gio/hobist/Repository/HobbyUserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Repository/HobbyUserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/gio/hobist/Service/HomePageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Service/HomePageService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/gio/hobist/Service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/Service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gio/hobist/utils/PasswordHasher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gio/hobist/utils/PasswordHasher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/homePage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/homePage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/db/migration/V1__Hobist_init.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/db/migration/V2__data_dump.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gio/hobist/Controller/AutenticationController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gio/hobist/Dto/AutenticationDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gio/hobist/Entity/City.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gio/hobist/Entity/Comment.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gio/hobist/Entity/ContentLike.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gio/hobist/Entity/Country.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gio/hobist/Entity/Friendship.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gio/hobist/Entity/Hobby.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gio/hobist/Entity/HobbyUser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gio/hobist/Entity/Message.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gio/hobist/Entity/Post.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gio/hobist/Entity/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gio/hobist/Exception/AutenticationException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gio/hobist/HobistApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gio/hobist/Repository/CityRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gio/hobist/Repository/CommentRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gio/hobist/Repository/ContentLikeRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gio/hobist/Repository/CountryRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gio/hobist/Repository/FriendshipRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gio/hobist/Repository/HobbyRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gio/hobist/Repository/HobbyUserRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gio/hobist/Repository/MessageRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gio/hobist/Repository/PostRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gio/hobist/Repository/UserRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gio/hobist/Service/AutenticationService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gio/hobist/utils/PasswordHasher.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/loginSignup.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/pictures/test.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/style2.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/homePage.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/loginPage.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/notoficationsPage.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/signupPage.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-spring-modulith/javadoc.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/gio/hobist/HobistApplicationTests.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +90,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../Labovi" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -85,7 +139,7 @@
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;Spring Boot.HobistApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Merging IO&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/ivanodrljin/Documents/Faks/JAVA/Hobist&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -114,7 +168,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.homePage.html">
+  <component name="RunManager" selected="Spring Boot.HobistApplication">
     <configuration name="homePage.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Hobist/src/main/resources/templates/homePage.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -279,6 +333,8 @@
       <workItem from="1767533225024" duration="2295000" />
       <workItem from="1768394108096" duration="947000" />
       <workItem from="1768561845565" duration="107000" />
+      <workItem from="1769077989815" duration="240000" />
+      <workItem from="1769078239384" duration="3701000" />
     </task>
     <servers />
   </component>

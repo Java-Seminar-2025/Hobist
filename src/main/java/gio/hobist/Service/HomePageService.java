@@ -14,11 +14,10 @@ import java.util.UUID;
 public class HomePageService {
 
     @Autowired
-    private PostRepository postRepository;
+    private final PostRepository postRepository;
 
-    public HomePageService(PostRepository postRepository) {
+    public HomePageService(PostRepository postRepository, UserService userService) {
         this.postRepository = postRepository;
-
     }
 
    public List<PostDto> findAllPosts(UUID userId){
