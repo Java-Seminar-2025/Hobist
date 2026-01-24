@@ -5,6 +5,7 @@ import gio.hobist.Dto.FriendshipDto;
 import gio.hobist.Dto.MessageDto;
 import gio.hobist.Dto.UserDto;
 import gio.hobist.Entity.Message;
+import gio.hobist.Enum.Status;
 import gio.hobist.Repository.FriendshipRepository;
 import gio.hobist.Repository.MessageRepository;
 import gio.hobist.Repository.UserRepository;
@@ -135,7 +136,7 @@ public class ChatService {
            messageDto.setMessage(new String(encryptedMessage));
        }
        catch (InvalidKeyException | IllegalBlockSizeException | BadPaddingException e){
-           System.out.println(e.getMessage());
+           // Error handling for encryption
        }
 
         var message = new Message();
@@ -150,5 +151,17 @@ public class ChatService {
 
     public void deleteMessage(UUID messageId) {
         messageRepository.deleteById(messageId);
+    }
+
+    public void createFriendship(UUID userId, UUID friendId) {
+        var user1 = userRepository.findById(userId).orElseThrow();
+        var user2 = userRepository.findById(friendId).orElseThrow();
+        
+        var friendship = new gio.hobist.Entity.Friendship();
+        friendship.setUser1(user1);
+        friendship.setUser2(user2);
+        friendship.setStatus(Status.valueOf("pending"));
+        
+        friendshipRepository.save(friendship);
     }
 }

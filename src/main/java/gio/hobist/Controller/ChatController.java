@@ -24,6 +24,10 @@ public class ChatController {
     public String friendList(Model model, HttpSession session){
 
         var userId=(UUID)session.getAttribute("userId");
+        if (userId == null) {
+            return "redirect:/";
+        }
+        
         var friends=chatService.getUsers(userId);
 
         model.addAttribute("user",
@@ -37,15 +41,23 @@ public class ChatController {
     @GetMapping("/{friendId}")
     public String openChat(HttpSession session, @PathVariable UUID friendId, Model model) {
 
+        var userId=(UUID)session.getAttribute("userId");
+        
+        if (userId == null) {
+            return "redirect:/";
+        }
 
         model.addAttribute("activeUser",
                 userService.getUser(friendId));
 
-        var userId=(UUID)session.getAttribute("userId");
         model.addAttribute("user",
                 userService.getUser(userId));
 
         var friendship = chatService.getFriendshipId(userId, friendId);
+        if (friendship == null) {
+            return "redirect:/searchPage?error=not_friends";
+        }
+        
         model.addAttribute("messages",
                 chatService.getAllMessages(friendship.getId()));
 

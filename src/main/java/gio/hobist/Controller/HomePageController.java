@@ -25,12 +25,12 @@ public class HomePageController {
     @GetMapping(path="/home")
     public String home(Model model, HttpSession session){
 
-//        if (session.getAttribute("user") == null){
-//            //explanation message
-//            return "redirect:/";
-//        }
-
         var userId=(UUID) session.getAttribute("userId");
+        
+        if (userId == null){
+            return "redirect:/";
+        }
+
         var feedPosts = homePageService.findAllPosts(userId);
         model.addAttribute("feed", feedPosts);
 

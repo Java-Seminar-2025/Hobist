@@ -37,11 +37,37 @@ public class UserService {
 
        return new UserDto(user.getId(),
                user.getName(),
-                null,
+                user.getSurname(),
                 null,
                 user.getEmail(),
                imageFileName
                );
+    }
+
+    public List<UserDto> searchByQuery(String query) {
+        var users = userRepository.findByNameContainingIgnoreCaseOrSurnameContainingIgnoreCase(query, query);
+
+        var dbFileTransfer = new DbFileTransferController();
+        String imageFileName;
+
+        try {
+            var image = dbFileTransfer.GetImage("defaultImage.jpg");
+            imageFileName = image.getBody().getFilename();
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+            imageFileName = null;
+        }
+
+        var finalImageFileName = imageFileName;
+
+        return users.stream().map(user -> new UserDto(
+                user.getId(),
+                user.getName(),
+                user.getSurname(),
+                null,
+                user.getEmail(),
+                finalImageFileName
+        )).toList();
     }
 
     public List<UserDto> searchByName(String name, String surname){
@@ -63,7 +89,7 @@ public class UserService {
 
         return users.stream().map(user-> new UserDto(user.getId(),
                user.getName(),
-               null,
+               user.getSurname(),
                null,
                user.getEmail(),
                 finalImageFileName

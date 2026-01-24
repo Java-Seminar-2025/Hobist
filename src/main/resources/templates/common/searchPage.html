@@ -17,29 +17,28 @@
             autocomplete="off"
     >
     <div id="resultsContainer">
-        <div th:each="user : ${users}" class="search-result">
-            <img src="@{${user.profile_image}}" class="result-avatar">
-            <div class="result-info">
-                <span class="name" th:text="${user.name}">name</span>
-                <span class="surname" th:text="${user.surname}">surname</span>
-            </div>
-            <a th:href="@{/chat/{id}(id=${user.id})}" class="message-btn">
-                Message
-            </a>
-        </div>
+        <!-- Results will be loaded here -->
     </div>
 </section>
 <script>
     const input = document.getElementById("searchInput");
+    const resultsContainer = document.getElementById("resultsContainer");
 
     input.addEventListener("input", async () => {
         const value = input.value.trim();
-        if (value.length < 2) return;
+        if (value.length < 2) {
+            resultsContainer.innerHTML = "";
+            return;
+        }
 
-        const response = await fetch(`/search/users?q=${value}`);
-        const html = await response.text();
-
-        document.getElementById("resultsContainer").innerHTML = html;
+        try {
+            const response = await fetch(`/search/users?q=${encodeURIComponent(value)}`);
+            const html = await response.text();
+            resultsContainer.innerHTML = html;
+        } catch (error) {
+            console.error('Search error:', error);
+            resultsContainer.innerHTML = '<p>Error loading results</p>';
+        }
     });
 </script>
 </body>

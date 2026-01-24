@@ -22,7 +22,7 @@
             </a>
         </li>
         <li class="navElement">
-            <a href="searchPage.html">
+            <a href="/searchPage">
                 <i class="fa-solid fa-magnifying-glass fa-3x"></i>
                 <span>Search</span>
             </a>
@@ -41,7 +41,7 @@
         </li>
         <li class="navElementImg">
             <a href="">
-                <img th:src="@{/media/{img}(img=${user.profilePicture})}" class="profileNavImg" alt="">
+                <img th:src="@{/media/{img}(img=${user != null ? user.profilePicture : 'default-profile.png'})}" class="profileNavImg" alt="">
                 <span class="imgSpan">Profile</span>
             </a>
         </li>
