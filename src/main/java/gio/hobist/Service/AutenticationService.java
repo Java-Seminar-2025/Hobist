@@ -67,7 +67,7 @@ public class AutenticationService {
 
         var user =userRepository.findByEmail(DtoUser.getEmail());
         if(user==null){
-            throw new AutenticationException("Email dosen't exists");
+            throw new AutenticationException("Email doesn't exist");
         }
 
        if (PasswordHasher.verifyPassword(DtoUser.getPassword(),user.getPassword())){

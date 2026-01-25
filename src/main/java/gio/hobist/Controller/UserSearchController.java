@@ -30,9 +30,17 @@ public class UserSearchController {
     }
 
     @GetMapping("/search/users")
-    public String searchUsers(@RequestParam String q, Model model) {
-        List<UserDto> users = userService.searchByQuery(q);
-        model.addAttribute("users", users);
-        return "common/search-results";
+    public String searchUsers(@RequestParam(required = false) String q, Model model, HttpSession session) {
+        var userId = (UUID) session.getAttribute("userId");
+        if (userId != null) {
+            var currentUser = userService.getUser(userId);
+            model.addAttribute("user", currentUser);
+        }
+        
+        if (q != null && !q.trim().isEmpty()) {
+            List<UserDto> users = userService.searchByQuery(q);
+            model.addAttribute("users", users);
+        }
+        return "common/searchPage";
     }
 }

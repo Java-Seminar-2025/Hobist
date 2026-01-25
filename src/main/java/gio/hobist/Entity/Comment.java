@@ -12,7 +12,7 @@ import java.util.UUID;
 @Setter
 @RequiredArgsConstructor
 @Table(name = "comment")
-public class Comment {//M.G: TODO: for M.G. fix comment table in db (problem: comment is not conneted to user!!)
+public class Comment {//M.G: TODO: for M.G. fix comment table in db (problem: comment is not connected to user!!)
 
     @Id
     @GeneratedValue

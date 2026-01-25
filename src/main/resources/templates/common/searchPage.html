@@ -10,36 +10,30 @@
 <body>
 <nav th:replace="~{common/navbar :: navbar}"></nav>
 <section class="search-container">
-    <input
-            class="search-input"
-            type="text" placeholder="Search people..."
-            id="searchInput"
-            autocomplete="off"
-    >
+    <form th:action="@{/search/users}" method="get">
+        <input
+                class="search-input"
+                type="text" placeholder="Search people..."
+                name="q"
+                th:value="${param.q}"
+                autocomplete="off"
+        >
+        <button type="submit">Search</button>
+    </form>
     <div id="resultsContainer">
-        <!-- Results will be loaded here -->
+        <div th:if="${users != null}">
+            <div th:each="user : ${users}" class="search-result">
+                <img th:src="@{/media/{img}(img=${user.profilePicture})}" class="result-avatar" alt="Profile picture">
+                <div class="result-info">
+                    <span class="name" th:text="${user.name}">Name</span>
+                    <span class="surname" th:text="${user.surname}">Surname</span>
+                </div>
+                <a th:href="@{/friendship/add/{friendId}(friendId=${user.id})}" class="add-friend-btn">
+                    <i class="fa-solid fa-user-plus"></i> Add Friend
+                </a>
+            </div>
+        </div>
     </div>
 </section>
-<script>
-    const input = document.getElementById("searchInput");
-    const resultsContainer = document.getElementById("resultsContainer");
-
-    input.addEventListener("input", async () => {
-        const value = input.value.trim();
-        if (value.length < 2) {
-            resultsContainer.innerHTML = "";
-            return;
-        }
-
-        try {
-            const response = await fetch(`/search/users?q=${encodeURIComponent(value)}`);
-            const html = await response.text();
-            resultsContainer.innerHTML = html;
-        } catch (error) {
-            console.error('Search error:', error);
-            resultsContainer.innerHTML = '<p>Error loading results</p>';
-        }
-    });
-</script>
 </body>
 </html>

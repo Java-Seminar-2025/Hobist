@@ -26,10 +26,6 @@ public class HomePageController {
     public String home(Model model, HttpSession session){
 
         var userId=(UUID) session.getAttribute("userId");
-        
-        if (userId == null){
-            return "redirect:/";
-        }
 
         var feedPosts = homePageService.findAllPosts(userId);
         model.addAttribute("feed", feedPosts);

@@ -20,12 +20,8 @@ public class FriendshipController {
     @GetMapping("/add/{friendId}")
     public String addFriend(HttpSession session, @PathVariable UUID friendId) {
         var userId = (UUID) session.getAttribute("userId");
-        
-        if (userId == null) {
-            return "redirect:/";
-        }
 
-        // Kreiranje prijateljstva (ili slanje zahteva)
+        // Creating friendship (or sending request)
         try {
             chatService.createFriendship(userId, friendId);
             return "redirect:/searchPage?success=friend_added";
