@@ -5,6 +5,7 @@ import gio.hobist.Repository.NotificationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -12,7 +13,7 @@ public class NotificationService {
     
     private final NotificationRepository notificationRepository;
     
-    public void sendLikeNotification(Long senderId, Long receiverId, String senderName, String postTitle) {
+    public void sendLikeNotification(UUID senderId, UUID receiverId, String senderName, String postTitle) {
         var notification = new Notification(
             senderId, 
             receiverId, 
@@ -22,7 +23,7 @@ public class NotificationService {
         notificationRepository.save(notification);
     }
     
-    public void sendCommentNotification(Long senderId, Long receiverId, String senderName, String postTitle) {
+    public void sendCommentNotification(UUID senderId, UUID receiverId, String senderName, String postTitle) {
         var notification = new Notification(
             senderId, 
             receiverId, 
@@ -32,7 +33,7 @@ public class NotificationService {
         notificationRepository.save(notification);
     }
     
-    public void sendFriendRequestNotification(Long senderId, Long receiverId, String senderName) {
+    public void sendFriendRequestNotification(UUID senderId, UUID receiverId, String senderName) {
         var notification = new Notification(
             senderId, 
             receiverId, 
@@ -42,7 +43,7 @@ public class NotificationService {
         notificationRepository.save(notification);
     }
     
-    public List<Notification> getUserNotifications(Long userId) {
+    public List<Notification> getUserNotifications(UUID userId) {
         return notificationRepository.findByIdReceiverOrderByCreatedAtDesc(userId);
     }
 }

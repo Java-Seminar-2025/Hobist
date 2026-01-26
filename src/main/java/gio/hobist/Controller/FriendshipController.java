@@ -32,8 +32,8 @@ public class FriendshipController {
             // Send friend request notification
             var sender = userService.getUser(userId);
             notificationService.sendFriendRequestNotification(
-                Long.valueOf(userId.toString().hashCode()),
-                Long.valueOf(friendId.toString().hashCode()),
+                userId,
+                friendId,
                 sender.getName() + " " + sender.getSurname()
             );
             

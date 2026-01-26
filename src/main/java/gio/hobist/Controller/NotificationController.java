@@ -17,7 +17,7 @@ public class NotificationController {
     @GetMapping("/notifications")
     public String notificationsPage(Model model, HttpSession session) {
         var userId = (UUID) session.getAttribute("userId");
-        var notifications = notificationService.getUserNotifications(Long.valueOf(userId.toString().hashCode()));
+        var notifications = notificationService.getUserNotifications(userId);
         model.addAttribute("notifications", notifications);
         return "notoficationsPage.html";
     }
