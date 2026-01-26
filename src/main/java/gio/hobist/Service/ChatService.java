@@ -136,7 +136,7 @@ public class ChatService {
            messageDto.setMessage(new String(encryptedMessage));
        }
        catch (InvalidKeyException | IllegalBlockSizeException | BadPaddingException e){
-           // Error handling for encryption
+           System.out.println(e.getMessage());
        }
 
         var message = new Message();

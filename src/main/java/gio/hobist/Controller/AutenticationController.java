@@ -46,7 +46,8 @@ public class AutenticationController {
             return "redirect:/login";
         }
         catch (Exception e) {
-            // Signup failed
+            System.out.println(e.getMessage());//for testing, delete later
+            //return message for ui
             return "redirect:/signup";
         }
     }
@@ -63,7 +64,8 @@ public class AutenticationController {
                 return "redirect:/home";
         }
         catch (Exception e){
-            // Login failed
+            System.out.println(e.getMessage());//for testing, delete later
+            //return message for ui
         }
 
         return "redirect:/login";
