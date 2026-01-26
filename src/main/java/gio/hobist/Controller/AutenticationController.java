@@ -46,7 +46,7 @@ public class AutenticationController {
             return "redirect:/login";
         }
         catch (Exception e) {
-        System.out.println(e.getMessage());//for testing, delete later
+            System.out.println(e.getMessage());//for testing, delete later
             //return message for ui
             return "redirect:/signup";
         }

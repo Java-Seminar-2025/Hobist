@@ -10,37 +10,30 @@
 <body>
 <nav th:replace="~{common/navbar :: navbar}"></nav>
 <section class="search-container">
-    <input
-            class="search-input"
-            type="text" placeholder="Search people..."
-            id="searchInput"
-            autocomplete="off"
-    >
+    <form th:action="@{/search/users}" method="get">
+        <input
+                class="search-input"
+                type="text" placeholder="Search people..."
+                name="q"
+                th:value="${param.q}"
+                autocomplete="off"
+        >
+        <button type="submit">Search</button>
+    </form>
     <div id="resultsContainer">
-        <div th:each="user : ${users}" class="search-result">
-            <img src="@{${user.profile_image}}" class="result-avatar">
-            <div class="result-info">
-                <span class="name" th:text="${user.name}">name</span>
-                <span class="surname" th:text="${user.surname}">surname</span>
+        <div th:if="${users != null}">
+            <div th:each="user : ${users}" class="search-result">
+                <img th:src="@{/media/{img}(img=${user.profilePicture})}" class="result-avatar" alt="Profile picture">
+                <div class="result-info">
+                    <span class="name" th:text="${user.name}">Name</span>
+                    <span class="surname" th:text="${user.surname}">Surname</span>
+                </div>
+                <a th:href="@{/friendship/add/{friendId}(friendId=${user.id})}" class="add-friend-btn">
+                    <i class="fa-solid fa-user-plus"></i> Add Friend
+                </a>
             </div>
-            <a th:href="@{/chat/{id}(id=${user.id})}" class="message-btn">
-                Message
-            </a>
         </div>
     </div>
 </section>
-<script>
-    const input = document.getElementById("searchInput");
-
-    input.addEventListener("input", async () => {
-        const value = input.value.trim();
-        if (value.length < 2) return;
-
-        const response = await fetch(`/search/users?q=${value}`);
-        const html = await response.text();
-
-        document.getElementById("resultsContainer").innerHTML = html;
-    });
-</script>
 </body>
 </html>

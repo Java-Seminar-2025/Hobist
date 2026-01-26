@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.UUID;
 
 @Service
-public class CommentService {//M.G: table is wrong in database, until fixed we cant work with commen
+public class CommentService {//M.G: table is wrong in database, until fixed we can't work with comments
 //
 //    @Autowired
 //    private CommentRepository commentRepository;
