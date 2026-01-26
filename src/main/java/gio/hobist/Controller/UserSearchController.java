@@ -38,8 +38,15 @@ public class UserSearchController {
         }
         
         if (q != null && !q.trim().isEmpty()) {
-            List<UserDto> users = userService.searchByQuery(q);
-            model.addAttribute("users", users);
+            try {
+                List<UserDto> users = userService.searchByQuery(q);
+                model.addAttribute("users", users);
+                if (users.isEmpty()) {
+                    model.addAttribute("noResults", "No users found for: " + q);
+                }
+            } catch (Exception e) {
+                model.addAttribute("errorMessage", "Search failed. Please try again.");
+            }
         }
         return "common/searchPage";
     }
