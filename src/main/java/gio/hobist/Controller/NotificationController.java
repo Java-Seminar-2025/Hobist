@@ -13,6 +13,7 @@ import java.util.UUID;
 public class NotificationController {
     
     private final NotificationService notificationService;
+    private final UserService userService;
     
     @GetMapping("/notifications")
     public String notificationsPage(Model model, HttpSession session) {
