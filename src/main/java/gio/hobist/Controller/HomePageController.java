@@ -36,7 +36,6 @@ public class HomePageController {
 
         var currentUser = userService.getUser(userId);
         model.addAttribute("user", currentUser);
-
         return "homePage.html";
     }
 
