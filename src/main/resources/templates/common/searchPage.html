@@ -21,6 +21,12 @@
         <button type="submit">Search</button>
     </form>
     <div id="resultsContainer">
+        <div th:if="${errorMessage}" class="error-message">
+            <p th:text="${errorMessage}"></p>
+        </div>
+        <div th:if="${noResults}" class="no-results">
+            <p th:text="${noResults}"></p>
+        </div>
         <div th:if="${users != null}">
             <div th:each="user : ${users}" class="search-result">
                 <img th:src="@{/media/{img}(img=${user.profilePicture})}" class="result-avatar" alt="Profile picture">
