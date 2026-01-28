@@ -31,6 +31,10 @@ public class Notification {
         this.idReceiver = idReceiver;
         this.subject = subject;
         this.description = description;
-        this.createdAt=null;
+    }
+    
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = Timestamp.valueOf(LocalDateTime.now());
     }
 }

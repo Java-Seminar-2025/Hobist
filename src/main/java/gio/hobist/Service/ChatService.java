@@ -57,7 +57,8 @@ public class ChatService {
                  other.getSurname(),
                  null,
                  null,
-                 picture
+                 picture,
+                 other.getProfile_image()
             );
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);

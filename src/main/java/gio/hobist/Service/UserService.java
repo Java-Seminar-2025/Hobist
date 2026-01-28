@@ -40,7 +40,8 @@ public class UserService {
                 user.getSurname(),
                 null,
                 user.getEmail(),
-               imageFileName
+               imageFileName,
+               user.getProfile_image()
                );
     }
 
@@ -66,7 +67,8 @@ public class UserService {
                 user.getSurname(),
                 null,
                 user.getEmail(),
-                finalImageFileName
+                finalImageFileName,
+                user.getProfile_image()
         )).toList();
     }
 
@@ -92,7 +94,8 @@ public class UserService {
                user.getSurname(),
                null,
                user.getEmail(),
-                finalImageFileName
+                finalImageFileName,
+                user.getProfile_image()
         )).toList();
 
     }

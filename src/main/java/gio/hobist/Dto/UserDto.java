@@ -18,5 +18,6 @@ public class UserDto {
     private String password;
     private String email;
     private String profilePicture;
+    private String profile_image;
 }
 
