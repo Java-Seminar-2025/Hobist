@@ -1,12 +1,10 @@
 package gio.hobist.Service;
 
-import gio.hobist.Entity.PasswordResetToken;
+import gio.hobist.Entity.Token;
 import gio.hobist.Repository.PasswordResetTokenRepository;
 import gio.hobist.Repository.UserRepository;
 import gio.hobist.utils.PasswordHasher;
 import jakarta.transaction.Transactional;
-import org.springframework.mail.MailSender;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
@@ -42,7 +40,7 @@ public class PasswordResetService {
         String rawToken = UUID.randomUUID() + "-" + UUID.randomUUID();
         String tokenHash = sha256Base64(rawToken);
 
-        PasswordResetToken t = new PasswordResetToken();
+        Token t = new Token();
         t.setUser(user);
         t.setTokenHash(tokenHash);
         t.setExpiresAt(Instant.now().plus(Duration.ofMinutes(30)));
@@ -59,7 +57,7 @@ public class PasswordResetService {
         var opt = tokenRepository.findTopByTokenHashOrderByExpiresAtDesc(hash);
         if (opt.isEmpty()) return false;
 
-        PasswordResetToken t = opt.get();
+        Token t = opt.get();
         return !t.isUsed() && t.getExpiresAt().isAfter(Instant.now());
     }
 
@@ -84,7 +82,7 @@ public class PasswordResetService {
             binding.reject("token.invalid", "Invalid reset token.");
             return;
         }
-        PasswordResetToken t = opt.get();
+        Token t = opt.get();
         if (t.isUsed() || t.getExpiresAt().isBefore(Instant.now())) {
             binding.reject("token.expired", "Reset token has expired or was already used.");
             return;
@@ -92,6 +90,7 @@ public class PasswordResetService {
 
         var user = t.getUser();
         user.setPassword(passwordHasher.hashPassword(newPassword));
+
         userRepository.save(user);
 
         t.setUsed(true);

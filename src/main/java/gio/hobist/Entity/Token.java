@@ -9,8 +9,8 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
-@Table(name = "password_reset_token")
-public class PasswordResetToken {
+@Table(name = "token")
+public class Token {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID id;

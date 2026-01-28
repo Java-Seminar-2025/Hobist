@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class PasswordResetController {
@@ -24,7 +25,7 @@ public class PasswordResetController {
     @GetMapping("/forgot-password")
     public String forgotPasswordPage(Model model) {
         model.addAttribute("form", new ForgotPasswordDto());
-        return "forgot-password";
+        return "common/forgot-password.html";
     }
 
     @PostMapping("/forgot-password")
@@ -36,14 +37,22 @@ public class PasswordResetController {
     }
 
     @GetMapping("/reset-password")
+    public String showResetPasswordForm(@RequestParam String token, Model model) {
+        ResetPasswordDto form = new ResetPasswordDto();
+        form.setToken(token);
+        model.addAttribute("form", form);
+        return "common/reset-password.html";
+    }
+
+    @PostMapping("/reset-password")
     public String resetPassword(@ModelAttribute("form")ResetPasswordDto form,
                                 BindingResult binding,
                                 Model model) {
         passwordResetService.resetPassword(form.getToken(), form.getNewPassword(), form.getConfirmPassword(), binding);
         if (binding.hasErrors()) {
-            return "reset-password";
+            return "common/reset-password.html";
         }
 
-        return "redirect:/?resetSuccess=true";
+        return "redirect:/login?resetSuccess=true";
     }
 }
