@@ -26,6 +26,16 @@
             </form>
 
         </div>
+
+        <form th:action="@{/post/{postId}/submitComment(postId=${post.id})}" method="post">
+           <textarea name="comment"></textarea>
+            <button type="submit">submit</button>
+        </form>
+
+        <iframe th:src="@{/comments/{postId}(postId=${post.id})}" width="100%" height="50%">
+
+        </iframe>
+
     </div>
 
 
