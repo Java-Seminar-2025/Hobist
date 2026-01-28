@@ -27,12 +27,12 @@ public class HomePageController {
 
 
         var userId=(UUID) session.getAttribute("userId");
+
         var feedPosts = homePageService.findAllPosts(userId);
         model.addAttribute("feed", feedPosts);
 
         var currentUser = userService.getUser(userId);
         model.addAttribute("user", currentUser);
-
         return "homePage.html";
     }
 
