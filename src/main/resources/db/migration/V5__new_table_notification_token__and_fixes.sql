@@ -19,8 +19,8 @@ CREATE TABLE notification (
     CONSTRAINT fk_receiver FOREIGN KEY (id_receiver) REFERENCES "user"(id)
 );
 
-ALTER TABLE content_like DROP CONSTRAINT unique_like;
-ALTER TABLE content_like DROP CONSTRAINT content_like_id_post_id_user_id_comment_key;
+ALTER TABLE content_like DROP CONSTRAINT IF EXISTS unique_like;
+ALTER TABLE content_like DROP CONSTRAINT IF EXISTS content_like_id_post_id_user_id_comment_key;
 
 CREATE UNIQUE INDEX unique_post_like
     ON content_like (id_post, id_user)
