@@ -11,10 +11,10 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class PostDto {
 
-    private UUID Id;
-    private UUID UserId;
+    private UUID id;
+    private UUID userId;
     private String message;
-    private String rawImage;//dto will get base64-encoded string for display of image
+    private String rawImage;
     private Integer likeNumber;
     private Timestamp createdAt;
 }

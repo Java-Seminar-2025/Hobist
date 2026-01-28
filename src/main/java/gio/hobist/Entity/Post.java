@@ -26,7 +26,7 @@ public class Post {
     private String image;
 
     @Column(name = "like_number")
-    private Integer likeNumber;
+    private Integer likeNumber; //M.G: this is unesecery and will be removed in future
 
     @Column(name="created_at")
     private Timestamp createdAt;

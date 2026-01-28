@@ -11,6 +11,12 @@
 
         <form th:action="@{/login}" method="POST" th:object="${user}"  autocomplete="off">
             <h1 class="heading">Login here</h1>
+            
+            <!-- Error message display -->
+            <div th:if="${errorMessage}" class="error-message">
+                <span th:text="${errorMessage}"></span>
+            </div>
+            
             <label>Email</label>
             <input type="email" th:field="*{email}" class="input-controll" placeholder="Your email address" required>
 

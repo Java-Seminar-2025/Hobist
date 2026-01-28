@@ -8,15 +8,12 @@ import lombok.Setter;
 import java.util.UUID;
 
 @Getter
-@AllArgsConstructor
 @Setter
 @RequiredArgsConstructor
-public class CommentDto {
+@AllArgsConstructor
+public class ContentLikeDto {
     private UUID id;
     private UUID postId;
+    private UUID commentId;
     private UUID userId;
-    private String userNameAndSurname;
-    private String message;
-    private Integer likeNumber;
-
 }
