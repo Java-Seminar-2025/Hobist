@@ -25,6 +25,6 @@ public class NotificationController {
         
         var notifications = notificationService.getUserNotifications(userId);
         model.addAttribute("notifications", notifications);
-        return "notoficationsPage.html";
+        return "notificationsPage.html";
     }
 }
