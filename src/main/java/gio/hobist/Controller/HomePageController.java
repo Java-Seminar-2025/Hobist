@@ -25,6 +25,7 @@ public class HomePageController {
     @GetMapping(path="/home")
     public String home(Model model, HttpSession session){
 
+
         var userId=(UUID) session.getAttribute("userId");
 
         var feedPosts = homePageService.findAllPosts(userId);

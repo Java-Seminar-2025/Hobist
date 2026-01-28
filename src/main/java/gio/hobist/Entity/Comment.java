@@ -12,7 +12,7 @@ import java.util.UUID;
 @Setter
 @RequiredArgsConstructor
 @Table(name = "comment")
-public class Comment {//M.G: TODO: for M.G. fix comment table in db (problem: comment is not connected to user!!)
+public class Comment {
 
     @Id
     @GeneratedValue
@@ -27,4 +27,12 @@ public class Comment {//M.G: TODO: for M.G. fix comment table in db (problem: co
     @Column(name = "like_number")
     private Integer likeNumber;
 
+    public Comment(Comment c){
+        this.id=c.id;
+        this.post=c.post;
+        this.message=c.message;
+        this.likeNumber=c.likeNumber;
+    }
 }
+
+
