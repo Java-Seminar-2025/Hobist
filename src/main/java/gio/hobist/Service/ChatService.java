@@ -1,6 +1,7 @@
 package gio.hobist.Service;
 
 import gio.hobist.Controller.DbFileTransferController;
+import gio.hobist.Dto.CountryCityDto;
 import gio.hobist.Dto.FriendshipDto;
 import gio.hobist.Dto.MessageDto;
 import gio.hobist.Dto.UserDto;
@@ -30,8 +31,9 @@ public class ChatService {
     private final UserRepository userRepository;
 
     private final DbFileTransferController dbFileTransferController=new DbFileTransferController();
+    private final UserService userService;
 
-   public FriendshipDto getFriendshipId(UUID friend1Id, UUID friend2Id) {
+    public FriendshipDto getFriendshipId(UUID friend1Id, UUID friend2Id) {
        var friendship=friendshipRepository.findByUser1IdAndUser2Id(friend1Id,friend2Id);
 
       return new FriendshipDto(friendship.getId(),
@@ -58,7 +60,11 @@ public class ChatService {
                  null,
                  null,
                  picture,
-                 other.getProfile_image()
+                 new CountryCityDto(other.getCountry()),
+                 new CountryCityDto(other.getCity()),
+                 other.getUserPageDescription(),
+                 userService.getNumberOfPosts(userId),
+                 userService.getNumberOfFriends(userId)
             );
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);

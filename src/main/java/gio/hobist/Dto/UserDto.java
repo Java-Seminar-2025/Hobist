@@ -18,6 +18,10 @@ public class UserDto {
     private String password;
     private String email;
     private String profilePicture;
-    private String profile_image;
+    private CountryCityDto country;
+    private CountryCityDto city;
+    private String userPageDescription;
+    private int numberOfPosts;
+    private int numberOfFriends;
 }
 

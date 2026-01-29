@@ -39,7 +39,7 @@ public class SettingsController {
         UUID userId = (UUID) session.getAttribute("userId");
         if (userId == null) return "redirect:/";
 
-        var user = settingsService.getCurrentUser(userId);
+        var user =userService.getUser(userId);
         model.addAttribute("user", user);
 
         UserSettingsFormDto form = new UserSettingsFormDto();

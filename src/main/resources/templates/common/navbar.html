@@ -40,16 +40,18 @@
             </a>
         </li>
         <li class="navElementImg">
-            <a href="/settings">
-                <img th:src="@{/media/{img}(img=${user.profile_image ?: 'defaultImage.jpg'})}" class="profileNavImg" alt="">
+            <a href="/">
+                <img th:src="@{/media/{img}(img=${user.profilePicture})}" class="profileNavImg" alt="">
                 <span class="imgSpan">Profile</span>
             </a>
         </li>
         <li >
             <a href="/logout">Logout</a>
-<!--            <form  th:action="@{/logout}" method="get" style="text-align:right">-->
-<!--                <button type="submit">logout</button>-->
-<!--            </form>-->
+
+        </li>
+        <li >
+            <a href="/settings">profile Settings</a>
+
         </li>
     </ul>
 </nav>

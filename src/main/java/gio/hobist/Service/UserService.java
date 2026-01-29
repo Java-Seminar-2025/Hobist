@@ -1,12 +1,18 @@
 package gio.hobist.Service;
 
+import gio.hobist.Dto.CountryCityDto;
 import gio.hobist.Dto.UserDto;
+import gio.hobist.Entity.Post;
+import gio.hobist.Repository.FriendshipRepository;
+import gio.hobist.Repository.PostRepository;
 import gio.hobist.Repository.UserRepository;
 import gio.hobist.Controller.DbFileTransferController;
+import io.vavr.control.Try;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,6 +21,10 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private PostRepository postRepository;
+    @Autowired
+    private FriendshipRepository friendshipRepository;
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -41,7 +51,11 @@ public class UserService {
                 null,
                 user.getEmail(),
                imageFileName,
-               user.getProfile_image()
+               Try.of(()-> new CountryCityDto(user.getCountry())).recover(NullPointerException.class,e->null).get(),
+               Try.of(()-> new CountryCityDto(user.getCity())).recover(NullPointerException.class,e->null).get(),
+               user.getUserPageDescription(),
+               getNumberOfPosts(user.getId()),
+               getNumberOfFriends(user.getId())
                );
     }
 
@@ -68,7 +82,11 @@ public class UserService {
                 null,
                 user.getEmail(),
                 finalImageFileName,
-                user.getProfile_image()
+                Try.of(()-> new CountryCityDto(user.getCountry())).recover(NullPointerException.class,e->null).get(),
+                Try.of(()-> new CountryCityDto(user.getCity())).recover(NullPointerException.class,e->null).get(),
+                user.getUserPageDescription(),
+                getNumberOfPosts(user.getId()),
+                getNumberOfFriends(user.getId())
         )).toList();
     }
 
@@ -89,14 +107,33 @@ public class UserService {
 
         var finalImageFileName = imageFileName; //M.G: this var was necessary for lambda expression according to the compiler error. Error: "Variable used in lambda expression should be final or effectively final"
 
+
+
+
+
         return users.stream().map(user-> new UserDto(user.getId(),
                user.getName(),
                user.getSurname(),
                null,
                user.getEmail(),
                 finalImageFileName,
-                user.getProfile_image()
+                Try.of(()-> new CountryCityDto(user.getCountry())).recover(NullPointerException.class,e->null).get(),
+                Try.of(()-> new CountryCityDto(user.getCity())).recover(NullPointerException.class,e->null).get(),
+                user.getUserPageDescription(),
+                getNumberOfPosts(user.getId()),
+                getNumberOfFriends(user.getId())
         )).toList();
 
     }
+
+   public int getNumberOfPosts(UUID userId){
+       var posts=Try.of(()->postRepository.findAllByIdUser(userId)).getOrElse(ArrayList::new);
+       return posts.size();
+   }
+
+   public int getNumberOfFriends(UUID userId){
+       var friends=Try.of(()->friendshipRepository.findByUser1Id(userId)).getOrElse(ArrayList::new);
+       return friends.size();
+   }
+
 }
