@@ -39,7 +39,7 @@ public class SettingsController {
         UUID userId = (UUID) session.getAttribute("userId");
         if (userId == null) return "redirect:/";
 
-        var user = settingsService.getCurrentUser(userId);
+        var user =userService.getUser(userId);
         model.addAttribute("user", user);
 
         UserSettingsFormDto form = new UserSettingsFormDto();
@@ -199,7 +199,7 @@ public class SettingsController {
 
 
     private void refillModel(Model model, UUID userId, UserSettingsFormDto form, String tab) {
-        var user = userService.getCurrentUser(userId);
+        var user = userService.getUser(userId);
         model.addAttribute("user", user);
 
         // settingsForm treba ostati isti (da ostanu user inputi)

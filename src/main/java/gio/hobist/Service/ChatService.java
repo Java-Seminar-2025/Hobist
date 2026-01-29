@@ -1,14 +1,17 @@
 package gio.hobist.Service;
 
 import gio.hobist.Controller.DbFileTransferController;
+import gio.hobist.Dto.CountryCityDto;
 import gio.hobist.Dto.FriendshipDto;
 import gio.hobist.Dto.MessageDto;
 import gio.hobist.Dto.UserDto;
 import gio.hobist.Entity.Message;
+import gio.hobist.Enum.Status;
 import gio.hobist.Repository.FriendshipRepository;
 import gio.hobist.Repository.MessageRepository;
 import gio.hobist.Repository.UserRepository;
 import gio.hobist.utils.MessageEncryption;
+import io.vavr.control.Try;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -29,8 +32,9 @@ public class ChatService {
     private final UserRepository userRepository;
 
     private final DbFileTransferController dbFileTransferController=new DbFileTransferController();
+    private final UserService userService;
 
-   public FriendshipDto getFriendshipId(UUID friend1Id, UUID friend2Id) {
+    public FriendshipDto getFriendshipId(UUID friend1Id, UUID friend2Id) {
        var friendship=friendshipRepository.findByUser1IdAndUser2Id(friend1Id,friend2Id);
 
       return new FriendshipDto(friendship.getId(),
@@ -56,7 +60,12 @@ public class ChatService {
                  other.getSurname(),
                  null,
                  null,
-                 picture
+                 picture,
+                 Try.of(()-> new CountryCityDto(other.getCountry())).recover(NullPointerException.class, e->null).get(),
+                 Try.of(()-> new CountryCityDto(other.getCity())).recover(NullPointerException.class,e->null).get(),
+                 other.getUserPageDescription(),
+                 userService.getNumberOfPosts(userId),
+                 userService.getNumberOfFriends(userId)
             );
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
@@ -150,5 +159,17 @@ public class ChatService {
 
     public void deleteMessage(UUID messageId) {
         messageRepository.deleteById(messageId);
+    }
+
+    public void createFriendship(UUID userId, UUID friendId) {
+        var user1 = userRepository.findById(userId).orElseThrow();
+        var user2 = userRepository.findById(friendId).orElseThrow();
+        
+        var friendship = new gio.hobist.Entity.Friendship();
+        friendship.setUser1(user1);
+        friendship.setUser2(user2);
+        friendship.setStatus(Status.valueOf("pending"));
+        
+        friendshipRepository.save(friendship);
     }
 }

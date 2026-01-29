@@ -22,7 +22,7 @@
             </a>
         </li>
         <li class="navElement">
-            <a href="searchPage.html">
+            <a href="/searchPage">
                 <i class="fa-solid fa-magnifying-glass fa-3x"></i>
                 <span>Search</span>
             </a>
@@ -34,22 +34,24 @@
             </a>
         </li>
         <li class="navElement">
-            <a href="notificationsPage.html">
+            <a href="/notifications">
                 <i class="fa-solid fa-bell fa-3x"></i>
                 <span>Notifications</span>
             </a>
         </li>
         <li class="navElementImg">
-            <a href="">
+            <a href="/">
                 <img th:src="@{/media/{img}(img=${user.profilePicture})}" class="profileNavImg" alt="">
                 <span class="imgSpan">Profile</span>
             </a>
         </li>
         <li >
             <a href="/logout">Logout</a>
-<!--            <form  th:action="@{/logout}" method="get" style="text-align:right">-->
-<!--                <button type="submit">logout</button>-->
-<!--            </form>-->
+
+        </li>
+        <li >
+            <a href="/settings">profile Settings</a>
+
         </li>
     </ul>
 </nav>

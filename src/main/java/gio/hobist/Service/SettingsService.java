@@ -29,10 +29,10 @@ public class SettingsService {
     private final PasswordHasher passwordHasher = new PasswordHasher();
 
 
-    public User getCurrentUser(UUID userId) {
-        return userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
-    }
+//    public User getCurrentUser(UUID userId) {
+//        return userRepository.findById(userId)
+//                .orElseThrow(() -> new RuntimeException("User not found"));
+//    }
 
     private boolean isBlank(String s) {
         return s == null || s.trim().isEmpty();
@@ -41,7 +41,7 @@ public class SettingsService {
 
     @Transactional
     public void changeEmail(UUID userId, String newEmail, BindingResult binding) {
-        User user = getCurrentUser(userId);
+        User user = userRepository.findByid(userId);
 
         if (isBlank(newEmail)) {
             binding.rejectValue("email", "email.empty", "Email cannot be empty.");
@@ -76,7 +76,7 @@ public class SettingsService {
             String confirmNewPassword,
             BindingResult binding
     ) {
-        User user = getCurrentUser(userId);
+        User user =userRepository.findByid(userId);
 
         if (isBlank(currentPassword)) {
             binding.rejectValue("currentPassword", "password.empty", "Current password is required.");
@@ -107,7 +107,7 @@ public class SettingsService {
 
     @Transactional
     public void updateLocation(UUID userId, Integer countryId, Integer cityId, BindingResult binding) {
-        User user = getCurrentUser(userId);
+        User user =userRepository.findByid(userId);
 
 
         if (countryId == null) {
@@ -182,7 +182,7 @@ public class SettingsService {
     @Transactional
     public void updateProfilePicture(UUID userId, MultipartFile file, BindingResult binding) {
 
-        User user = getCurrentUser(userId);
+        User user =userRepository.findByid(userId);
 
         if(file == null || file.isEmpty()){
             binding.reject("profileImage.empty", "Please provide a profile picture.");
@@ -222,7 +222,7 @@ public class SettingsService {
 
     @Transactional
     public void updateDescription(UUID userId, String description, BindingResult binding) {
-        User user = getCurrentUser(userId);
+        User user =userRepository.findByid(userId);
 
         if (description == null) description = "";
         if (description.length() > 500) {

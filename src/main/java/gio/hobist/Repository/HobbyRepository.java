@@ -7,4 +7,6 @@ import java.util.List;
 import java.util.UUID;
 
 public interface HobbyRepository extends JpaRepository<Hobby, UUID> {
+
+//    List<Hobby> findById(List<UUID> hobbyIds);
 }
