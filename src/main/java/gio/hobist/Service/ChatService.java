@@ -11,6 +11,7 @@ import gio.hobist.Repository.FriendshipRepository;
 import gio.hobist.Repository.MessageRepository;
 import gio.hobist.Repository.UserRepository;
 import gio.hobist.utils.MessageEncryption;
+import io.vavr.control.Try;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -60,8 +61,8 @@ public class ChatService {
                  null,
                  null,
                  picture,
-                 new CountryCityDto(other.getCountry()),
-                 new CountryCityDto(other.getCity()),
+                 Try.of(()-> new CountryCityDto(other.getCountry())).recover(NullPointerException.class, e->null).get(),
+                 Try.of(()-> new CountryCityDto(other.getCity())).recover(NullPointerException.class,e->null).get(),
                  other.getUserPageDescription(),
                  userService.getNumberOfPosts(userId),
                  userService.getNumberOfFriends(userId)
