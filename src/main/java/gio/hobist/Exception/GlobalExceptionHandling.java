@@ -17,21 +17,21 @@ public class GlobalExceptionHandling {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.UNAUTHORIZED);
     }
 
-//    @ExceptionHandler(NullPointerException.class)
-//    public String
-//    NullPointerException(NullPointerException e, HttpSession session) {//M.G: still catches all NullpointerExceptions. need to fix later.
-//        if (session.getAttribute("user") == null) {
-//            return new String("redirect:/login");
-//        }
-//
-//        nullPointerException(e);
-//        return null;
-//    }
-//
-//    public ResponseEntity<String>
-//    nullPointerException(NullPointerException e) {
-//        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-//    }
+    @ExceptionHandler(NullPointerException.class)
+    public String
+    NullPointerException(NullPointerException e, HttpSession session) {//M.G: still catches all NullpointerExceptions. need to fix later.
+        if (session.getAttribute("user") == null) {
+            return new String("redirect:/login");
+        }
+
+        nullPointerException(e);
+        return null;
+    }
+
+    public ResponseEntity<String>
+    nullPointerException(NullPointerException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+    }
 
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<String> handleUserNotFound(UserNotFoundException e) {
