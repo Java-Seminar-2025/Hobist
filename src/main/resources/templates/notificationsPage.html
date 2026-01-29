@@ -18,6 +18,19 @@
                     <span class="notification-subject" th:text="${notification.subject}">Subject</span>
                     <span class="notification-description" th:text="${notification.description}">Description</span>
                     <span class="notification-time" th:text="${notification.createdAt}">Time</span>
+
+                    <!-- ACTIONS FOR FRIEND REQUEST -->
+                    <div th:if="${notification.subject == 'FRIEND_REQUEST'}" class="notification-actions">
+                        <a th:href="@{/friendship/respond/{senderId}/accept(senderId=${notification.idSender})}" class="btn accept">
+                            <i class="fa-solid fa-check"></i> Accept
+                        </a>
+                        <a th:href="@{/friendship/respond/{senderId}/decline(senderId=${notification.idSender})}" class="btn decline">
+                            <i class="fa-solid fa-xmark"></i> Don't accept
+                        </a>
+                        <a th:href="@{/friendship/respond/{senderId}/block(senderId=${notification.idSender})}" class="btn block">
+                            <i class="fa-solid fa-ban"></i> Block
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
