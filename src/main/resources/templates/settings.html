@@ -16,8 +16,8 @@
     <h1 class="heading">Settings</h1>
 
     <div class="profile-summary">
-        <img th:src="@{${user.profilePicture}}" alt="Profile picture">
-        <h2 th:text="${user.name} + '' + ${user.surname}">Name</h2>
+        <img th:src="@{/media/{img}(img=${user.profilePicture})}" alt="Profile picture">
+        <h2 th:text="${user.name} + ' ' + ${user.surname}">Name</h2>
 
         <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
         <p><strong>Country:</strong> <span th:text="${user.country != null ? user.country.name : '-'}"></span></p>
@@ -55,14 +55,14 @@
         <button type="submit">Save location</button>
     </form>
 
-    <form action="@{/settings/email}" th:object="${settingsForm}" class="settings-form" method="post">
+    <form th:action="@{/settings/email}" th:object="${settingsForm}" class="settings-form" method="post">
         <h3>Update email</h3>
         <input type="email" th:field="*{email}" placeholder="Email">
         <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
         <button type="submit">Save email</button>
     </form>
 
-    <form action="@{/settings/password}">
+    <form th:action="@{/settings/password}" th:object="${settingsForm}" method="post">
         <h3>Change password</h3>
         <input type="password" th:field="*{currentPassword}" placeholder="Current password">
         <div th:if="${#fields.hasErrors('currentPassword')}" th:errors="*{currentPassword}"></div>
@@ -78,7 +78,7 @@
     </form>
 
 
-    <form action="/settings/description" th:object="${settingsForm}" class="settings-form" method="post">
+    <form th:action="@{/settings/description}" th:object="${settingsForm}" class="settings-form" method="post">
         <h3>Edit description</h3>
         <textarea th:field="*{description}" rows="4" placeholder="Description"></textarea>
         <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
@@ -117,8 +117,6 @@
     </form>
 
 </section>
-
-
 
 
 
