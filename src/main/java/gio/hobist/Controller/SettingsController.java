@@ -199,7 +199,7 @@ public class SettingsController {
 
 
     private void refillModel(Model model, UUID userId, UserSettingsFormDto form, String tab) {
-        var user = userService.getCurrentAutenthicatedUser(userId);
+        var user = userService.getCurrentUser(userId);
         model.addAttribute("user", user);
 
         // settingsForm treba ostati isti (da ostanu user inputi)

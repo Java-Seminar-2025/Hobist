@@ -1,6 +1,7 @@
 package gio.hobist.Service;
 
 import gio.hobist.Dto.UserDto;
+import gio.hobist.Entity.User;
 import gio.hobist.Repository.UserRepository;
 import gio.hobist.Controller.DbFileTransferController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,10 @@ public class UserService {
                 user.getEmail(),
                imageFileName
                );
+    }
+    public User getCurrentUser(UUID userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
     public List<UserDto> searchByName(String name, String surname){
