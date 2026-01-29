@@ -1,11 +1,17 @@
+version: "3.9"
+
 services:
   postgres:
-    image: 'postgres:latest'
+    image: "postgres:16"
+    container_name: hobist-postgres
     environment:
-      - POSTGRES_DB=Hobist
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=mypassword
+      POSTGRES_DB: Hobist
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
     ports:
-      - '5432:5432'
-#    volumes: M.G:not in use for now
-#      - ./uploads:/media
+      - "5433:5432"
+    volumes:
+      - hobist_db_data:/var/lib/postgresql/data
+
+volumes:
+  hobist_db_data:
