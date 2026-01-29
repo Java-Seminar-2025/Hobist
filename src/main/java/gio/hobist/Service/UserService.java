@@ -15,6 +15,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import gio.hobist.Repository.HobbyUserRepository;
 
 @Service
 public class UserService {
@@ -89,44 +90,63 @@ public class UserService {
                 getNumberOfFriends(user.getId())
         )).toList();
     }
+    @Autowired
+    private HobbyUserRepository hobbyUserRepository;
 
-    public List<UserDto> searchByName(String name, String surname){
-        var users= userRepository.findByNameAndSurname(name,surname);
+    public List<UserDto> searchByQueryWithSharedHobby(String query, UUID currentUserId) {
+
+        var users = userRepository.findByNameContainingIgnoreCaseOrSurnameContainingIgnoreCase(query, query);
+
+        var myHobbyIds = hobbyUserRepository.findByUser_Id(currentUserId)
+                .stream()
+                .map(hu -> hu.getHobby().getId())
+                .toList();
+
+        if (myHobbyIds.isEmpty()) {
+            return List.of();
+        }
 
         var dbFileTransfer = new DbFileTransferController();
-        String imageFileName; //not var because of try catch
+        String imageFileName;
 
         try {
-            var image = dbFileTransfer.GetImage("defaultImage.jpg");//M.G: defaultImage.jpg is template for now
-            imageFileName=image.getBody().getFilename();
-        }
-        catch (FileNotFoundException e) {
+            var image = dbFileTransfer.GetImage("defaultImage.jpg");
+            imageFileName = image.getBody().getFilename();
+        } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
-            imageFileName=null;
+            imageFileName = null;
         }
 
-        var finalImageFileName = imageFileName; //M.G: this var was necessary for lambda expression according to the compiler error. Error: "Variable used in lambda expression should be final or effectively final"
+        var finalImageFileName = imageFileName;
 
-
-
-
-
-        return users.stream().map(user-> new UserDto(user.getId(),
-               user.getName(),
-               user.getSurname(),
-               null,
-               user.getEmail(),
-                finalImageFileName,
-                Try.of(()-> new CountryCityDto(user.getCountry())).recover(NullPointerException.class,e->null).get(),
-                Try.of(()-> new CountryCityDto(user.getCity())).recover(NullPointerException.class,e->null).get(),
-                user.getUserPageDescription(),
-                getNumberOfPosts(user.getId()),
-                getNumberOfFriends(user.getId())
-        )).toList();
-
+        return users.stream()
+                .filter(u -> !u.getId().equals(currentUserId))
+                .filter(u -> {
+                    for (var hu : hobbyUserRepository.findByUser_Id(u.getId())) {
+                        if (myHobbyIds.contains(hu.getHobby().getId())) {
+                            return true;
+                        }
+                    }
+                    return false;
+                })
+                .map(user -> new UserDto(
+                        user.getId(),
+                        user.getName(),
+                        user.getSurname(),
+                        null,
+                        user.getEmail(),
+                        finalImageFileName,
+                        Try.of(() -> new CountryCityDto(user.getCountry())).recover(NullPointerException.class,e->null).get(),
+                        Try.of(() -> new CountryCityDto(user.getCity())).recover(NullPointerException.class,e->null).get(),
+                        user.getUserPageDescription(),
+                        getNumberOfPosts(user.getId()),
+                        getNumberOfFriends(user.getId())
+                ))
+                .toList();
     }
 
-   public int getNumberOfPosts(UUID userId){
+
+    public int getNumberOfPosts(UUID userId){
        var posts=Try.of(()->postRepository.findAllByIdUser(userId)).getOrElse(ArrayList::new);
        return posts.size();
    }
