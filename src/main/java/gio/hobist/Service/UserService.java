@@ -20,6 +20,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import gio.hobist.Repository.HobbyUserRepository;
 
 @RequiredArgsConstructor
 @Service
@@ -86,6 +87,65 @@ public class UserService {
 
 
    public int getNumberOfPosts(UUID userId){
+        )).toList();
+    }
+    @Autowired
+    private HobbyUserRepository hobbyUserRepository;
+
+    public List<UserDto> searchByQueryWithSharedHobby(String query, UUID currentUserId) {
+
+        var users = userRepository.findByNameContainingIgnoreCaseOrSurnameContainingIgnoreCase(query, query);
+
+        var myHobbyIds = hobbyUserRepository.findByUser_Id(currentUserId)
+                .stream()
+                .map(hu -> hu.getHobby().getId())
+                .toList();
+
+        if (myHobbyIds.isEmpty()) {
+            return List.of();
+        }
+
+        var dbFileTransfer = new DbFileTransferController();
+        String imageFileName;
+
+        try {
+            var image = dbFileTransfer.GetImage("defaultImage.jpg");
+            imageFileName = image.getBody().getFilename();
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+            imageFileName = null;
+        }
+
+        var finalImageFileName = imageFileName;
+
+        return users.stream()
+                .filter(u -> !u.getId().equals(currentUserId))
+                .filter(u -> {
+                    for (var hu : hobbyUserRepository.findByUser_Id(u.getId())) {
+                        if (myHobbyIds.contains(hu.getHobby().getId())) {
+                            return true;
+                        }
+                    }
+                    return false;
+                })
+                .map(user -> new UserDto(
+                        user.getId(),
+                        user.getName(),
+                        user.getSurname(),
+                        null,
+                        user.getEmail(),
+                        finalImageFileName,
+                        Try.of(() -> new CountryCityDto(user.getCountry())).recover(NullPointerException.class,e->null).get(),
+                        Try.of(() -> new CountryCityDto(user.getCity())).recover(NullPointerException.class,e->null).get(),
+                        user.getUserPageDescription(),
+                        getNumberOfPosts(user.getId()),
+                        getNumberOfFriends(user.getId())
+                ))
+                .toList();
+    }
+
+
+    public int getNumberOfPosts(UUID userId){
        var posts=Try.of(()->postRepository.findAllByIdUser(userId)).getOrElse(ArrayList::new);
        return posts.size();
    }

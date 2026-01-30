@@ -46,4 +46,10 @@ public class NotificationService {
     public List<Notification> getUserNotifications(UUID userId) {
         return notificationRepository.findByIdReceiverOrderByCreatedAtDesc(userId);
     }
+    public void deleteFriendRequestNotifications(UUID senderId, UUID receiverId) {
+        var list = notificationRepository.findByIdSenderAndIdReceiverAndSubject(senderId, receiverId, "FRIEND_REQUEST");
+        if (list != null && !list.isEmpty()) {
+            notificationRepository.deleteAll(list);
+        }
+    }
 }
