@@ -4,7 +4,7 @@
         <span class="name" th:text="${user.name}">Name</span>
         <span class="surname" th:text="${user.surname}">Surname</span>
     </div>
-    <button onclick="location.href='/friendship/add/' + '${user.id}'" class="add-friend-btn">
+    <a th:href="@{/friendship/add/{friendId}(friendId=${user.id})}" class="add-friend-btn">
         <i class="fa-solid fa-user-plus"></i> Add Friend
-    </button>
+    </a>
 </div>

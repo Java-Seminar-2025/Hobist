@@ -1,6 +1,8 @@
 package gio.hobist.Controller;
 
 import gio.hobist.Dto.UserDto;
+import gio.hobist.Enum.Status;
+import gio.hobist.Repository.FriendshipRepository;
 import gio.hobist.Service.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +20,9 @@ public class UserSearchController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private FriendshipRepository friendshipRepository;
 
     @GetMapping("/searchPage")
     public String searchPage(Model model, HttpSession session) {
@@ -47,36 +52,40 @@ public class UserSearchController {
         if (q == null || q.trim().isEmpty()) {
             return "common/searchPage";
         }
-        if (q != null && !q.trim().isEmpty()) {
-            if ("sharedHobby".equals(mode)){
-                try {
-                    List<UserDto> users = userService.searchByQueryWithSharedHobby(q, userId)
-                            .stream()
-                            .filter(u -> !u.getId().equals(userId))
-                            .toList();
-                    model.addAttribute("users", users);
-                    if (users.isEmpty()) {
-                        model.addAttribute("noResults", "No users found for: " + q);
-                    }
-                } catch (Exception e) {
-                    model.addAttribute("errorMessage", "Search failed. Please try again.");
-                }
+
+        try {
+            List<UserDto> users;
+            if ("sharedHobby".equals(mode)) {
+                users = userService.searchByQueryWithSharedHobby(q, userId)
+                        .stream()
+                        .filter(u -> !u.getId().equals(userId))
+                        .toList();
+            } else {
+                users = userService.searchByQuery(q)
+                        .stream()
+                        .filter(u -> !u.getId().equals(userId))
+                        .toList();
             }
-            else{
-                try {
-                    List<UserDto> users = userService.searchByQuery(q)
-                            .stream()
-                            .filter(u -> !u.getId().equals(userId))
-                            .toList();
-                    model.addAttribute("users", users);
-                    if (users.isEmpty()) {
-                        model.addAttribute("noResults", "No users found for: " + q);
-                    }
-                } catch (Exception e) {
-                    model.addAttribute("errorMessage", "Search failed. Please try again.");
-                }
+            model.addAttribute("users", users);
+            if (users.isEmpty()) {
+                model.addAttribute("noResults", "No users found for: " + q);
             }
+
+            var friendships = friendshipRepository.findByUser1Id(userId);
+            var acceptedFriendIds = friendships.stream()
+                    .filter(f -> f.getStatus() != null && f.getStatus().equals(Status.accepted))
+                    .map(f -> {
+                        var other = f.getUser1().getId().equals(userId) ? f.getUser2() : f.getUser1();
+                        return other.getId();
+                    })
+                    .toList();
+
+            model.addAttribute("acceptedFriends", acceptedFriendIds);
+
+        } catch (Exception e) {
+            model.addAttribute("errorMessage", "Search failed. Please try again.");
         }
+
         return "common/searchPage";
     }
 }
