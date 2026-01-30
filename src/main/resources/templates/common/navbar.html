@@ -16,9 +16,9 @@
 <nav id="navbar" th:fragment="navbar">
     <ul class="navTable">
         <li class="navElement">
-            <a href="/home">
+            <a href="/">
                 <i class="fa-solid fa-house fa-3x"></i>
-                <span>Home</span>
+                <span>For you page</span>
             </a>
         </li>
         <li class="navElement">
@@ -40,9 +40,9 @@
             </a>
         </li>
         <li class="navElementImg">
-            <a href="/">
-                <img th:src="@{/media/{img}(img=${user.profilePicture})}" class="profileNavImg" alt="">
-                <span class="imgSpan">Profile</span>
+            <a href="/home">
+                <img  th:src="@{/media/{userId}/{img}(userId=${user.id},img=${user.profilePicture})}" class="profileNavImg" alt="">
+                <span class="imgSpan">Home</span>
             </a>
         </li>
         <li >
@@ -52,6 +52,9 @@
         <li >
             <a href="/settings">profile Settings</a>
 
+        </li>
+        <li>
+            <a href="/post/newPost">new post</a>
         </li>
     </ul>
 </nav>

@@ -3,6 +3,7 @@ package gio.hobist.Service;
 import gio.hobist.Entity.*;
 import gio.hobist.Repository.*;
 import gio.hobist.utils.PasswordHasher;
+import io.vavr.control.Try;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,7 @@ public class SettingsService {
     private final CityRepository cityRepository;
     private final HobbyRepository hobbyRepository;
     private final HobbyUserRepository hobbyUserRepository;
+    private final DbFileTransferService dbFileTransferService;
 
     private final PasswordHasher passwordHasher = new PasswordHasher();
 
@@ -201,21 +203,17 @@ public class SettingsService {
 
 
 
-        String ext = getSafeExtension(file.getOriginalFilename());
-        String filename = UUID.randomUUID() + ext;
 
-        Path uploadDir = Paths.get("uploads", "profile");
         try {
-            Files.createDirectories(uploadDir);
-            Path target = uploadDir.resolve(filename);
-            Files.copy(file.getInputStream(), target, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
+            dbFileTransferService.saveFile(user.getId(), file);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
             binding.reject("profileImage.io", "Failed to save image.");
             return;
         }
 
-
-        user.setProfile_image("/uploads/profile/" + filename);
+        user.setProfile_image(file.getOriginalFilename());
         userRepository.save(user);
 
     }

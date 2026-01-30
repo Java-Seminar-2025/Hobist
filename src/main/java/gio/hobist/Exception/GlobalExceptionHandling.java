@@ -20,7 +20,7 @@ public class GlobalExceptionHandling {
     @ExceptionHandler(NullPointerException.class)
     public String
     NullPointerException(NullPointerException e, HttpSession session) {//M.G: still catches all NullpointerExceptions. need to fix later.
-        if (session.getAttribute("user") == null) {
+        if (session.getAttribute("user")==null ) {
             return new String("redirect:/login");
         }
 
