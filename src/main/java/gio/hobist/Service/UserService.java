@@ -85,10 +85,6 @@ public class UserService {
     }
 
 
-
-   public int getNumberOfPosts(UUID userId){
-        )).toList();
-    }
     @Autowired
     private HobbyUserRepository hobbyUserRepository;
 
@@ -105,18 +101,6 @@ public class UserService {
             return List.of();
         }
 
-        var dbFileTransfer = new DbFileTransferController();
-        String imageFileName;
-
-        try {
-            var image = dbFileTransfer.GetImage("defaultImage.jpg");
-            imageFileName = image.getBody().getFilename();
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-            imageFileName = null;
-        }
-
-        var finalImageFileName = imageFileName;
 
         return users.stream()
                 .filter(u -> !u.getId().equals(currentUserId))
@@ -128,20 +112,28 @@ public class UserService {
                     }
                     return false;
                 })
-                .map(user -> new UserDto(
-                        user.getId(),
-                        user.getName(),
-                        user.getSurname(),
-                        null,
-                        user.getEmail(),
-                        finalImageFileName,
-                        Try.of(() -> new CountryCityDto(user.getCountry())).recover(NullPointerException.class,e->null).get(),
-                        Try.of(() -> new CountryCityDto(user.getCity())).recover(NullPointerException.class,e->null).get(),
-                        user.getUserPageDescription(),
-                        getNumberOfPosts(user.getId()),
-                        getNumberOfFriends(user.getId())
-                ))
-                .toList();
+                .map(user -> {
+
+                    var img=(user.getProfile_image()==null)?//M.G:tweaked for new version of fileTransfer
+                            "noImage.jpg"
+                            :user.getProfile_image();
+                    String finalImageFileName=new String(img);
+
+                    return new UserDto(
+                            user.getId(),
+                            user.getName(),
+                            user.getSurname(),
+                            null,
+                            user.getEmail(),
+                            finalImageFileName,
+                            Try.of(() -> new CountryCityDto(user.getCountry())).recover(NullPointerException.class,e->null).get(),
+                            Try.of(() -> new CountryCityDto(user.getCity())).recover(NullPointerException.class,e->null).get(),
+                            user.getUserPageDescription(),
+                            getNumberOfPosts(user.getId()),
+                            getNumberOfFriends(user.getId())
+                    );}
+                ).toList();
+//                .toList();
     }
 
 
