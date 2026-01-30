@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/style2.css}">
+    <link rel="stylesheet" th:href="@{/style2.css}" >
     <script src="https://kit.fontawesome.com/d4739cb5c2.js" crossorigin="anonymous"></script>
     <title>Title</title>
 </head>
@@ -22,14 +22,14 @@
 
             <br>
             <form th:action="@{/post/{postId}/like(postId=${post.id})}" method="post">
-                <button  type="submit">Like</button>
+                <button  type="submit" class="btn">Like</button>
             </form>
 
         </div>
 
         <form th:action="@{/post/{postId}/submitComment(postId=${post.id})}" method="post">
            <textarea name="comment"></textarea>
-            <button type="submit">submit</button>
+            <button type="submit" class="btn">submit</button>
         </form>
 
         <iframe th:src="@{/comments/{postId}(postId=${post.id})}" width="100%" height="50%">

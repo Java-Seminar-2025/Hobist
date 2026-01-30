@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/style2.css}">
+    <link rel="stylesheet" th:href="@{/style2new.css}">
     <script src="https://kit.fontawesome.com/d4739cb5c2.js" crossorigin="anonymous"></script>
     <title>Title</title>
 </head>
@@ -14,7 +14,7 @@
         <textarea name="message"></textarea>
         <p>upload image</p>
         <input type="file" name="file" accept="image/*">
-        <button type="submit">create</button>
+        <button type="submit" class="btn">create</button>
     </form>
 
 
