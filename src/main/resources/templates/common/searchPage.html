@@ -52,24 +52,37 @@
             <p th:text="${noResults}"></p>
         </div>
 
-
         <div th:if="${users != null and !users.isEmpty()}">
 
             <div th:each="user : ${users}" class="search-result">
-                <img th:src="@{/media/{userId}/{img}(userId=${user.id},img=${user.profilePicture})}" class="result-avatar" alt="Profile picture">
+                <img th:src="@{/media/{userId}/{img}(userId=${user.id},img=${user.profilePicture})}"
+                     th:alt="${user.name + ' avatar'}"
+                     class="result-avatar" />
+
                 <div class="result-info">
-                    <span class="name" th:text="${user.name}">Name</span>
-                    <span class="surname" th:text="${user.surname}">Surname</span>
+                    <h3>
+                        <span th:text="${user.name}">Name</span>
+                        <span th:text="${user.surname}">Surname</span>
+                    </h3>
+                    <div class="small">
+                        <span th:text="${user.userPageDescription}">Opis</span>
+                    </div>
                 </div>
 
-                <a
-                        th:href="@{/friendship/add/{friendId}(friendId=${user.id})}"
-                        class="add-friend-btn"
-                >
-                    <i class="fa-solid fa-user-plus"></i>
-                    Add Friend
-                </a>
+                <div class="result-actions">
 
+                    <a th:if="${acceptedFriends != null and acceptedFriends.contains(user.id)}"
+                       th:href="@{/profile/view/{id}(id=${user.id})}"
+                       class="btn-view-profile">
+                        Pregledaj profil i objave
+                    </a>
+
+                    <a th:if="${acceptedFriends == null or !acceptedFriends.contains(user.id)}"
+                       th:href="@{/friendship/add/{friendId}(friendId=${user.id})}"
+                       class="add-friend-btn">
+                        <i class="fa-solid fa-user-plus"></i> Add Friend
+                    </a>
+                </div>
             </div>
 
         </div>
