@@ -177,7 +177,7 @@ public class SettingsController {
     @GetMapping("/settings/cities")
     public String citiesByCountry(@RequestParam Integer countryId, Model model) {
         model.addAttribute("cities", cityRepository.findByCountryId(countryId));
-        return "fragments/city-options";
+        return "common/city-options";
     }
 
     @PostMapping("/settings/description")
