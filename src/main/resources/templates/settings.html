@@ -16,7 +16,7 @@
     <h1 class="heading">Settings</h1>
 
     <div class="profile-summary">
-        <img th:src="@{/media/{img}(img=${user.profilePicture})}" alt="Profile picture">
+        <img th:src="@{/media/{userId}/{img}(userId=${user.id},img=${user.profilePicture})}" alt="Profile picture">
         <h2 th:text="${user.name} + ' ' + ${user.surname}">Name</h2>
 
         <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
@@ -83,7 +83,7 @@
 
 
     <h3>Change profile picture</h3>
-    <img th:src="@{${user.profilePicture}}" class="settings-avatar" alt="">
+    <img th:src="@{/media/{userId}/{img}(userId=${user.id},img=${user.profilePicture})}" class="settings-avatar" alt="">
 
     <form th:action="@{/settings/profile-picture}" method="post" enctype="multipart/form-data">
 
@@ -105,6 +105,7 @@
             </option>
         </select>
 
+        <p>you can select multiple hobby's and then save!</p>
         <button type="submit">Save hobbies</button>
 
         <div th:if="${param.hobbySaved}">Hobbies updated.</div>

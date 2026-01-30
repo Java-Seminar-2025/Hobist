@@ -48,10 +48,13 @@ public class ChatService {
   public List<UserDto> getUsers(UUID userId) {
        var friendships=friendshipRepository.findByUser1Id(userId);
 
-        return friendships.stream().map(f ->{
+        return friendships.stream().filter(f->f.getStatus().equals(Status.accepted))
+                .map(f ->{
             var other=f.getUser1().getId().equals(userId)?f.getUser2():f.getUser1();
-            try {
-                var picture=(other.getProfile_image()==null) ? dbFileTransferController.GetDefauldImage() :other.getProfile_image();
+            var img=(other.getProfile_image()==null)?
+                    "noImage.jpg"
+                    :other.getProfile_image();
+            String imageFileName=new String(img);
 
 
             return new UserDto(
@@ -60,16 +63,14 @@ public class ChatService {
                  other.getSurname(),
                  null,
                  null,
-                 picture,
+                 imageFileName,
                  Try.of(()-> new CountryCityDto(other.getCountry())).recover(NullPointerException.class, e->null).get(),
                  Try.of(()-> new CountryCityDto(other.getCity())).recover(NullPointerException.class,e->null).get(),
                  other.getUserPageDescription(),
                  userService.getNumberOfPosts(userId),
                  userService.getNumberOfFriends(userId)
             );
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
-            }
+
         }).toList();
 
   }

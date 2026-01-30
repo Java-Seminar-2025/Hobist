@@ -1,5 +1,5 @@
 <div th:each="user : ${users}" class="search-result">
-    <img th:src="@{/media/{img}(img=${user.profilePicture})}" class="result-avatar" alt="Profile picture">
+    <img th:src="@{/media/{userId}/{img}(userId=${user.id},img=${user.profilePicture})}" class="result-avatar" alt="Profile picture">
     <div class="result-info">
         <span class="name" th:text="${user.name}">Name</span>
         <span class="surname" th:text="${user.surname}">Surname</span>

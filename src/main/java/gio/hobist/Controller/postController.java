@@ -2,6 +2,7 @@ package gio.hobist.Controller;
 
 import gio.hobist.Dto.CommentDto;
 import gio.hobist.Dto.ContentLikeDto;
+import gio.hobist.Dto.PostDto;
 import gio.hobist.Entity.ContentLike;
 import gio.hobist.Service.CommentService;
 import gio.hobist.Service.PostService;
@@ -11,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.UUID;
 
@@ -69,5 +71,34 @@ public class postController {
       commentService.createComment(commentDto);
 
         return "redirect:/post/"+ postId;
+    }
+
+
+    @GetMapping("/newPost")
+    public String newPost(HttpSession session, Model model){
+        var userId=(UUID)session.getAttribute("userId");
+        model.addAttribute("user",
+               userService.getUser(userId));
+
+        return "common/Newpost.html";
+    }
+
+
+    @PostMapping("/newPost/send")
+    public String sendPost(HttpSession session, @ModelAttribute(name="message") String message, @ModelAttribute(name="file")MultipartFile file){
+        var userId=(UUID)session.getAttribute("userId");
+
+        var post=new PostDto(
+                null,
+                userId,
+                message,
+                null,
+                null,
+                null
+        );
+
+        postService.createPost(post,file);
+
+        return "redirect:/home";
     }
 }
