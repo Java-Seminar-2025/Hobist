@@ -138,7 +138,13 @@
                 <version>3.13.0</version>
                 <configuration>
                     <source>25</source>
-                    <target>25</target>
+                    <target>25</target>					<annotationProcessorPaths>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>1.18.42</version>  
+						</path>
+					</annotationProcessorPaths>
                 </configuration>
             </plugin>
         </plugins>
