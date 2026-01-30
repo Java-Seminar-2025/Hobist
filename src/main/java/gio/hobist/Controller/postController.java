@@ -3,7 +3,6 @@ package gio.hobist.Controller;
 import gio.hobist.Dto.CommentDto;
 import gio.hobist.Dto.ContentLikeDto;
 import gio.hobist.Dto.PostDto;
-import gio.hobist.Entity.ContentLike;
 import gio.hobist.Service.CommentService;
 import gio.hobist.Service.PostService;
 import gio.hobist.Service.UserService;
