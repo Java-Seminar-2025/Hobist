@@ -1,25 +1,27 @@
-# Stage 1: Build the app with Maven
-FROM maven:3.9.9-eclipse-temurin-25 AS builder
+# Stage 1: Build sa Maven + Java 25
+FROM maven:3.9-eclipse-temurin-25 AS builder
+
+# Koristiš alpine ili noble? Ovdje koristim standardnu (brža, ali možeš promijeniti na -alpine ako želiš manji build image)
 WORKDIR /build
 
-# Copy pom first for caching dependencies
+# Prvo kopiraj pom.xml + dependency:go-offline za caching
 COPY pom.xml .
-# Download dependencies (cache this layer)
 RUN mvn dependency:go-offline -B
 
-# Copy source and build
+# Kopiraj source i build JAR
 COPY src ./src
-RUN mvn clean package -DskipTests  # Skip tests for faster builds; remove flag if you want tests
+RUN mvn clean package -DskipTests   # -DskipTests za brži build; makni ako želiš testove na Renderu
 
-# Stage 2: Lightweight runtime image
+# Stage 2: Lagana runtime slika samo sa JRE 25
 FROM eclipse-temurin:25-jre
+
 WORKDIR /app
 
-# Copy the built JAR from builder stage
+# Kopiraj samo finalni JAR iz build stage-a
 COPY --from=builder /build/target/*.jar app.jar
 
-# Expose your app's port (default for Spring Boot)
+# Spring Boot default port je 8080, Render ga interno mapira na $PORT (ali obično radi i sa 8080)
 EXPOSE 8080
 
-# Run the app (use -Dspring.profiles.active=prod if needed)
+# Pokreni app (možeš dodati -XX opcije za memoriju ako treba)
 ENTRYPOINT ["java", "-jar", "app.jar"]
