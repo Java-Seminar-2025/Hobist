@@ -10,13 +10,12 @@ import java.util.UUID;
 
 public interface HobbyUserRepository extends JpaRepository<HobbyUser, HobbyUserId> {
 
-    List<HobbyUser> findByUserId(UUID userId);
-
-    List<HobbyUser> findByHobbyId(UUID hobbyId);
 
     void deleteByUserId(UUID userId);
 
     List<HobbyUser> findByUser_Id(UUID userId);
 
     void deleteByUser_Id(UUID userId);
+
+    List<HobbyUser> findByHobby_IdIn(List<UUID> hobbyIds);
 }

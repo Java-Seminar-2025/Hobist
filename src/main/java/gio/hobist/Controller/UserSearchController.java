@@ -30,22 +30,51 @@ public class UserSearchController {
     }
 
     @GetMapping("/search/users")
-    public String searchUsers(@RequestParam(required = false) String q, Model model, HttpSession session) {
-        var userId = (UUID) session.getAttribute("userId");
-        if (userId != null) {
-            var currentUser = userService.getUser(userId);
-            model.addAttribute("user", currentUser);
+    public String searchUsers(
+            @RequestParam(required = false) String q,
+            @RequestParam(defaultValue = "all") String mode,
+            Model model,
+            HttpSession session) {
+
+        UUID userId = (UUID) session.getAttribute("userId");
+
+        if (userId == null) {
+            return "redirect:/login";
         }
-        
+
+        model.addAttribute("user", userService.getUser(userId));
+
+        if (q == null || q.trim().isEmpty()) {
+            return "common/searchPage";
+        }
         if (q != null && !q.trim().isEmpty()) {
-            try {
-                List<UserDto> users = userService.searchByQuery(q);
-                model.addAttribute("users", users);
-                if (users.isEmpty()) {
-                    model.addAttribute("noResults", "No users found for: " + q);
+            if ("sharedHobby".equals(mode)){
+                try {
+                    List<UserDto> users = userService.searchByQueryWithSharedHobby(q, userId)
+                            .stream()
+                            .filter(u -> !u.getId().equals(userId))
+                            .toList();
+                    model.addAttribute("users", users);
+                    if (users.isEmpty()) {
+                        model.addAttribute("noResults", "No users found for: " + q);
+                    }
+                } catch (Exception e) {
+                    model.addAttribute("errorMessage", "Search failed. Please try again.");
                 }
-            } catch (Exception e) {
-                model.addAttribute("errorMessage", "Search failed. Please try again.");
+            }
+            else{
+                try {
+                    List<UserDto> users = userService.searchByQuery(q)
+                            .stream()
+                            .filter(u -> !u.getId().equals(userId))
+                            .toList();
+                    model.addAttribute("users", users);
+                    if (users.isEmpty()) {
+                        model.addAttribute("noResults", "No users found for: " + q);
+                    }
+                } catch (Exception e) {
+                    model.addAttribute("errorMessage", "Search failed. Please try again.");
+                }
             }
         }
         return "common/searchPage";
