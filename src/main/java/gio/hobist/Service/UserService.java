@@ -6,7 +6,6 @@ import gio.hobist.Enum.Status;
 import gio.hobist.Repository.FriendshipRepository;
 import gio.hobist.Repository.PostRepository;
 import gio.hobist.Repository.UserRepository;
-import gio.hobist.Controller.DbFileTransferController;
 import io.vavr.control.Try;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +28,6 @@ public class UserService {
     private final UserRepository userRepository;
     private final PostRepository postRepository;
     private final FriendshipRepository friendshipRepository;
-    private final DbFileTransferController dbFileTransferController;
 
 
     public UserDto getUser(UUID userId){

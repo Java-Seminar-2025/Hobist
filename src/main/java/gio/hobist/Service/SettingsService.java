@@ -26,7 +26,7 @@ public class SettingsService {
     private final CityRepository cityRepository;
     private final HobbyRepository hobbyRepository;
     private final HobbyUserRepository hobbyUserRepository;
-    private final DbFileTransferService dbFileTransferService;
+    private final SimpleS3Service s3Service;
 
     private final PasswordHasher passwordHasher = new PasswordHasher();
 
@@ -205,7 +205,7 @@ public class SettingsService {
 
 
         try {
-            dbFileTransferService.saveFile(user.getId(), file);
+            s3Service.saveFile(user.getId(), file);
         }
         catch (IOException e) {
             e.printStackTrace();

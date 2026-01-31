@@ -1,6 +1,5 @@
 package gio.hobist.Service;
 
-import gio.hobist.Controller.DbFileTransferController;
 import gio.hobist.Dto.CountryCityDto;
 import gio.hobist.Dto.FriendshipDto;
 import gio.hobist.Dto.MessageDto;
@@ -31,7 +30,6 @@ public class ChatService {
     private final FriendshipRepository friendshipRepository;
     private final UserRepository userRepository;
 
-    private final DbFileTransferController dbFileTransferController=new DbFileTransferController();
     private final UserService userService;
 
     public FriendshipDto getFriendshipId(UUID friend1Id, UUID friend2Id) {

@@ -22,11 +22,11 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class PostService {
 
-    private final DbFileTransferService dbFileTransferService;
     private final PostRepository postRepository;
     private final ContentLikeRepository contentLikeRepository;
     private final CommentRepository commentRepository;
     private final UserRepository userRepository;
+    private final SimpleS3Service simpleS3Service;
 
     public PostDto getPost(UUID postId){
        var post=postRepository.findByid(postId);
@@ -85,7 +85,7 @@ public class PostService {
         String fileName=file.getOriginalFilename();
 
         try {
-            dbFileTransferService.saveFile(postDto.getUserId(), file);
+            simpleS3Service.saveFile(postDto.getUserId(), file);
         }
         catch (IOException e){
             e.printStackTrace();
