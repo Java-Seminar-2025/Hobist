@@ -28,18 +28,22 @@ public class DbFileTransferController {
     @GetMapping("/media/{userId}/{imagePath}")//M.G: thymeleaf can access files only with url path so we put our local files first on site
     public ResponseEntity<Resource> GetImage(@PathVariable String imagePath,@PathVariable UUID userId) throws FileNotFoundException {
 
-        Path path=null;
-        if(imagePath.equals("noImage.jpg")){
-            path= Paths.get(uploadDir).resolve("defaultImage.jpg");
-        }
-        else {
-            path = Paths.get(uploadDir).resolve(userId + "/" + imagePath);
-            if (!Files.exists(path)) {
-                path= Paths.get(uploadDir).resolve("defaultImage.jpg");
+        Resource resource;
+
+        if(imagePath.equals("noImage.jpg")) {
+            // Default image from classpath (bundled in JAR)
+            resource = new ClassPathResource("uploads/defaultImage.jpg");
+        } else {
+            // User-uploaded image from filesystem
+            Path path = Paths.get(uploadDir).resolve(userId + "/" + imagePath);
+
+            if (Files.exists(path)) {
+                resource = new FileSystemResource(path);
+            } else {
+                // Fallback to default image from classpath
+                resource = new ClassPathResource("uploads/defaultImage.jpg");
             }
         }
-        Resource resource = new ClassPathResource(path.toFile().toString());
-
 
         return ResponseEntity.ok()
                 .contentType(MediaType.IMAGE_JPEG)
