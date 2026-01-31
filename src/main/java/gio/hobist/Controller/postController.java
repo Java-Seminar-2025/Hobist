@@ -79,7 +79,7 @@ public class postController {
         model.addAttribute("user",
                userService.getUser(userId));
 
-        return "common/Newpost.html";
+        return "common/newPost.html";
     }
 
 
