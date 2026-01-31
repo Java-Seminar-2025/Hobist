@@ -2,6 +2,7 @@ package gio.hobist.Controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
@@ -37,7 +38,7 @@ public class DbFileTransferController {
                 path= Paths.get(uploadDir).resolve("defaultImage.jpg");
             }
         }
-        Resource resource = new FileSystemResource(path.toFile());
+        Resource resource = new ClassPathResource(path.toFile().toString());
 
 
         return ResponseEntity.ok()
