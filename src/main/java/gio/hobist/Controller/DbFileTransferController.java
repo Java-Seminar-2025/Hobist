@@ -31,16 +31,13 @@ public class DbFileTransferController {
         Resource resource;
 
         if(imagePath.equals("noImage.jpg")) {
-            // Default image from classpath (bundled in JAR)
             resource = new ClassPathResource("uploads/defaultImage.jpg");
         } else {
-            // User-uploaded image from filesystem
             Path path = Paths.get(uploadDir).resolve(userId + "/" + imagePath);
 
             if (Files.exists(path)) {
                 resource = new FileSystemResource(path);
             } else {
-                // Fallback to default image from classpath
                 resource = new ClassPathResource("uploads/defaultImage.jpg");
             }
         }
