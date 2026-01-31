@@ -22,7 +22,7 @@ public class DbFileTransferController {
 
 
     @Value("${file.upload-dir}")//M.G: @value doesn't work like it should so i hardcoded uploads directory
-    private final String uploadDir="uploads";//M.G:change this on your pc!!
+    private String uploadDir;//M.G:change this on your pc!!
 
     @GetMapping("/media/{userId}/{imagePath}")//M.G: thymeleaf can access files only with url path so we put our local files first on site
     public ResponseEntity<Resource> GetImage(@PathVariable String imagePath,@PathVariable UUID userId) throws FileNotFoundException {

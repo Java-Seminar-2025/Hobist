@@ -15,7 +15,7 @@ import java.util.UUID;
 public class DbFileTransferService {
 
     @Value("${file.upload-dir}")//M.G:doesn't work like it should so i hardcoded uploads directory
-    private final String uploadDir="uploads";//M.G:change this on your pc!!
+    private String uploadDir;//M.G:change this on your pc!!
 
 
    public void saveFile(UUID userId, MultipartFile file) throws IOException {
