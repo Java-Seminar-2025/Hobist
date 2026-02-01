@@ -67,6 +67,7 @@ public class SimpleS3Service {
                 .bucket(bucketName)
                 .key(fileName)
                 .build();
+        System.out.println(fileName);
 
         return s3Client.getObjectAsBytes(request).asByteArray();
     }
