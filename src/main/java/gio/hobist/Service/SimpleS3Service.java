@@ -48,7 +48,7 @@ public class SimpleS3Service {
 
     // Upload file
     public String saveFile(UUID userId, MultipartFile file) throws IOException {
-        var fileName= file.getOriginalFilename()+userId.toString();
+        var fileName=userId.toString()+ file.getOriginalFilename();
         s3Client.putObject(
                 PutObjectRequest.builder()
                         .bucket(bucketName)

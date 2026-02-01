@@ -33,7 +33,7 @@ public class SimpleFileController {
     @GetMapping("/media/{userId}/{imagePath}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String imagePath, @PathVariable UUID userId) {
         try {
-            byte[] data = s3Service.downloadFile(imagePath+ userId.toString());
+            byte[] data = s3Service.downloadFile( userId.toString()+imagePath);
 
             ByteArrayResource resource = new ByteArrayResource(data);
 
