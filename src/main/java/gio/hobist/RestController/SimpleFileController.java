@@ -46,7 +46,7 @@ public class SimpleFileController {
         } catch (Exception e) {
             return ResponseEntity.ok()
                     .contentType(MediaType.IMAGE_JPEG)
-                    .body(new ClassPathResource("src/resources/uploads/defaultImage.jpg"));
+                    .body(new ClassPathResource("src/main/resources/uploads/defaultImage.jpg"));
         }
     }
 
