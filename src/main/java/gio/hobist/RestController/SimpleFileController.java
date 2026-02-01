@@ -33,12 +33,12 @@ public class SimpleFileController {
     @GetMapping("/media/{userId}/{imagePath}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String imagePath, @PathVariable UUID userId) {
         try {
-            byte[] data = s3Service.downloadFile(imagePath);
+            byte[] data = s3Service.downloadFile(imagePath+ userId.toString());
 
             ByteArrayResource resource = new ByteArrayResource(data);
 
             return ResponseEntity.ok()
-                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + imagePath + userId.toString())
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + imagePath+ userId.toString() )
                     .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_OCTET_STREAM_VALUE)
                     .contentLength(data.length)
                     .body((Resource) resource);
