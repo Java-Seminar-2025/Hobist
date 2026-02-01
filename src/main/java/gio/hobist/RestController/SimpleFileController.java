@@ -1,9 +1,9 @@
 package gio.hobist.RestController;
 
 import gio.hobist.Service.SimpleS3Service;
-import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -41,7 +41,7 @@ public class SimpleFileController {
                     .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + imagePath+ userId.toString() )
                     .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_OCTET_STREAM_VALUE)
                     .contentLength(data.length)
-                    .body((Resource) resource);
+                    .body(resource);
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
