@@ -3,6 +3,7 @@ package gio.hobist.RestController;
 import gio.hobist.Service.SimpleS3Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -43,7 +44,9 @@ public class SimpleFileController {
                     .contentLength(data.length)
                     .body(resource);
         } catch (Exception e) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.ok()
+                    .contentType(MediaType.IMAGE_JPEG)
+                    .body(new ClassPathResource("uploads/defaultImage.jpg"));
         }
     }
 
