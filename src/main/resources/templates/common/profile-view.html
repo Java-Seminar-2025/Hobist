@@ -3,44 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${user.name + ' ' + user.surname}">User profile</title>
-    <link rel="stylesheet" th:href="@{/style2.css}">
+    <link rel="stylesheet" th:href="@{/style3.css}">
+    <script src="https://kit.fontawesome.com/d4739cb5c2.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <nav th:replace="~{common/navbar :: navbar}"></nav>
 
-<section class="profile-section">
-    <div class="profile-header">
-        <img th:src="@{/media/{userId}/{img}(userId=${user.id},img=${user.profilePicture})}"
-             th:alt="${user.name + ' avatar'}" />
-        <h1 th:text="${user.name + ' ' + user.surname}">Name Surname</h1>
-        <p th:text="${user.userPageDescription}">Opis...</p>
-    </div>
-
-    <div class="profile-content">
-        <div class="basic-info">
-            <p><strong>Email:</strong> <span th:text="${user.email}">email</span></p>
-            <p><strong>City:</strong> <span th:text="${user.city != null ? user.city.name : '—'}">grad</span></p>
-            <p><strong>Country:</strong> <span th:text="${user.country != null ? user.country.name : '—'}">država</span></p>
+<main class="main">
+    <section class="settings-section">
+        <div class="profile-summary">
+            <img th:src="@{/media/{userId}/{img}(userId=${user.id},img=${user.profilePicture})}"
+                 th:alt="${user.name + ' avatar'}" />
+            <div>
+                <h1 th:text="${user.name + ' ' + user.surname}" style="margin-bottom: 8px; font-size: 1.5rem;">Name Surname</h1>
+                <p th:text="${user.userPageDescription}" style="color: var(--muted); line-height: 1.5;">Opis...</p>
+            </div>
         </div>
 
-        <div th:if="${isFriend}">
-            <h2>Objave</h2>
-            <div th:if="${posts == null or #lists.isEmpty(posts)}">
+        <div class="settings-form">
+            <h2 style="margin-bottom: 12px;">Osnovne informacije</h2>
+            <div style="display: grid; gap: 10px;">
+                <p><strong>Email:</strong> <span th:text="${user.email}">email</span></p>
+                <p><strong>Grad:</strong> <span th:text="${user.city != null ? user.city.name : '—'}">grad</span></p>
+                <p><strong>Država:</strong> <span th:text="${user.country != null ? user.country.name : '—'}">država</span></p>
+            </div>
+        </div>
+
+        <div th:if="${isFriend}" class="settings-form">
+            <h2 style="margin-bottom: 16px;">Objave</h2>
+            <div th:if="${posts == null or #lists.isEmpty(posts)}" class="no-results">
                 <p>Nema objava.</p>
             </div>
-            <div th:each="post : ${posts}" class="post-item">
-                <p th:text="${post.message}">Sadržaj objave</p>
-                <div th:if="${post.image != null}">
-                    <img th:src="@{/media/{userId}/{img}(userId=${post.idUser},img=${post.image})}" alt="post image" style="max-width: 100%;"/>
+            <div th:unless="${posts == null or #lists.isEmpty(posts)}" class="feed" style="gap: 14px;">
+                <div th:each="post : ${posts}" class="post-card">
+                    <div class="post-card__header">
+                        <img th:src="@{/media/{userId}/{img}(userId=${user.id},img=${user.profilePicture})}"
+                             class="profile-photo"
+                             th:alt="${user.name}" />
+                        <span th:text="${user.name + ' ' + user.surname}">Name</span>
+                        <span class="date" th:text="${#dates.format(post.createdAt, 'dd.MM.yyyy HH:mm')}">Datum</span>
+                    </div>
+                    <div class="post-card__body">
+                        <p th:text="${post.message}">Sadržaj objave</p>
+                        <img th:if="${post.image != null}"
+                             th:src="@{/media/{userId}/{img}(userId=${post.idUser},img=${post.image})}"
+                             class="post-image"
+                             alt="Post image" />
+                    </div>
                 </div>
-                <small th:text="${#dates.format(post.createdAt, 'yyyy-MM-dd HH:mm')}">Datum</small>
             </div>
         </div>
 
-        <div th:unless="${isFriend}">
-            <p>Objave možete vidjeti tek kada postanete prijatelji.</p>
+        <div th:unless="${isFriend}" class="settings-form">
+            <p style="color: var(--muted); text-align: center; padding: 20px;">
+                Objave možete vidjeti tek kada postanete prijatelji.
+            </p>
         </div>
-    </div>
-</section>
+    </section>
+</main>
 </body>
-</html>
+</html>/html>

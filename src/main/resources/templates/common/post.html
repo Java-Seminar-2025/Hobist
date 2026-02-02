@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/style2.css}" >
+    <link rel="stylesheet" th:href="@{/style2.css}" href="../../style2.css">
     <script src="https://kit.fontawesome.com/d4739cb5c2.js" crossorigin="anonymous"></script>
     <title>Title</title>
 </head>
@@ -35,6 +35,9 @@
         <iframe th:src="@{/comments/{postId}(postId=${post.id})}" width="100%" height="50%">
 
         </iframe>
+        <form th:if="${post.userId==user.id}" th:action="@{/post/{postId}/delete(postId=${post.id})}" method="post">
+           <button>delete post</button>
+        </form>
 
     </div>
 

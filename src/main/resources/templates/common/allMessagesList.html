@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/style2.css}">
+    <link rel="stylesheet" th:href="@{/style3.css}">
     <script src="https://kit.fontawesome.com/d4739cb5c2.js" crossorigin="anonymous"></script>
     <title>Chat</title>
 </head>
@@ -12,10 +12,11 @@
 <div id="messages">
     <div th:each="m : ${messages}"
          th:class="${m.userId == myId} ? 'me' : 'them'">
-        <span th:text="${user.id==m.userId}? ${user.name}:${activeUser.name} "></span>
-        <spam>(</spam>
-        <span  th:text="${m.timeSent}"></span>
-        <span>): </span>
-        <span  th:text="${m.message}"></span>
+        <span th:text="${user.id == m.userId} ? ${user.name} : ${activeUser.name}"></span>
+        <span th:text="${m.timeSent}"></span>
+        <span>(</span>
+        <span th:text="${m.message}"></span>
     </div>
 </div>
+</body>
+</html>
