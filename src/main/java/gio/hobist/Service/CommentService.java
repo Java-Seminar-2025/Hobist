@@ -11,6 +11,7 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -71,7 +72,8 @@ public class CommentService {//M.G: table is wrong in database, until fixed we c
 
     }
 
-    public void deleteComment(UUID commentId) {
-        commentRepository.deleteById(commentId);
+    @Transactional
+    public void deleteComment(UUID postId) {
+        commentRepository.deleteByPostId(postId);
     }
 }

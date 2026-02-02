@@ -100,4 +100,13 @@ public class postController {
 
         return "redirect:/home";
     }
+
+   @PostMapping("/{postId}/delete")
+    public String deletePost(@PathVariable UUID postId) {
+        postService.deleteLike(postId);
+       commentService.deleteComment(postId);
+       postService.deletePost(postId);
+       return "redirect:/home";
+   }
 }
+
