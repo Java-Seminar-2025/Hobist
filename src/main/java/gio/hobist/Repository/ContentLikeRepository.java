@@ -17,5 +17,7 @@ public interface ContentLikeRepository extends JpaRepository<ContentLike, UUID> 
 
     void deleteByPostIdAndUserIdAndCommentId(UUID postId, UUID userId, UUID commentId);
 
+    void deleteByPostId(UUID postId);
+
     List<ContentLike> findByPostIdAndUserIdAndCommentId(UUID postId, UUID userId, UUID commentId);
 }

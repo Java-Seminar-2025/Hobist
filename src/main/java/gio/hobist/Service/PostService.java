@@ -72,6 +72,11 @@ public class PostService {
         }
     }
 
+    @Transactional
+    public void deleteLike(UUID postId){
+        contentLikeRepository.deleteByPostId(postId);
+    }
+
     public boolean isLiked(UUID postId, UUID userId, UUID commentId){
         var isLiked=contentLikeRepository.findByPostIdAndUserIdAndCommentId(
                 postId,
@@ -98,6 +103,10 @@ public class PostService {
 
         postRepository.save(post);
 
+    }
+
+    public void deletePost(UUID postId){
+        postRepository.deleteById(postId);
     }
 
 }

@@ -12,7 +12,7 @@
 <div id="friends">
     <div th:each="f : ${friends}">
         <a th:href="@{/chat/{friendId}(friendId=${f.id})}">
-            <img th:src="@{/media/{userId}/{img}(userId=${user.id},img=${user.profilePicture})}"  alt="profilePicture">
+            <img th:src="@{/media/{userId}/{img}(userId=${f.id},img=${f.profilePicture})}"  alt="profilePicture">
             <span  th:text="${f.name}"></span>
             <span  th:text="${f.surname}"></span>
         </a>
