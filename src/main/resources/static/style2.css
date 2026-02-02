@@ -1,3 +1,4 @@
+
 /* === GLOBAL RESET === */
 * {
     padding: 0;
@@ -1091,4 +1092,413 @@ form[action*="/post/newPost/send"] p{
 }
 .back-link a:hover{
     text-decoration: underline;
+}
+
+
+
+
+#chat,
+#friends,
+.search-container,
+form[action*="/post/newPost/send"],
+.post-card__header{
+    width: min(980px, 92vw);
+    margin: 22px auto;
+}
+
+/* -------------- CHAT (chat.html) -------------- */
+#chat{
+    padding: 18px;
+    border: 1px solid var(--border, #e5e7eb);
+    border-radius: var(--radius, 14px);
+    background: var(--surface, #fff);
+    box-shadow: var(--shadow-soft, 0 6px 18px rgba(0,0,0,.06));
+}
+
+
+#chat iframe{
+    width: 100% !important;
+    height: min(560px, 62vh) !important;
+    border: 1px solid var(--border, #e5e7eb);
+    border-radius: 14px;
+    background: var(--surface-2, #fafafa);
+}
+
+
+#chat form[method="post"]{
+    margin-top: 12px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+
+#messageInput{
+    flex: 1;
+    min-width: 0;
+    padding: 12px 12px;
+    border-radius: 12px;
+    border: 1px solid var(--border, #e5e7eb);
+    font-size: 1rem;
+    background: #fff;
+}
+
+
+#chat button{
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,.08);
+    background: var(--brand, rgb(131,0,0));
+    color: #fff;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 8px 18px rgba(131,0,0,.18);
+    transition: transform .12s ease, background-color .18s ease;
+}
+#chat button:hover{
+    background: var(--brand-2, rgb(170,56,56));
+    transform: translateY(-1px);
+}
+
+
+#chat form[method="get"] button{
+    background: transparent;
+    color: var(--text, rgb(49,49,49));
+    border: 1px solid var(--border, #e5e7eb);
+    box-shadow: none;
+}
+#chat form[method="get"] button:hover{
+    background: rgba(0,0,0,.04);
+    transform: translateY(-1px);
+}
+
+/* -------------- MESSAGES (latestMessagesList.html in iframe) -------------- */
+#messages{
+    padding: 14px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+#messages span,
+#messages spam{
+    display: inline !important;
+    white-space: normal;
+}
+
+
+#messages .me,
+#messages .them{
+    max-width: min(72ch, 88%);
+    padding: 10px 12px;
+    border-radius: 14px;
+    border: 1px solid var(--border, #e5e7eb);
+    box-shadow: 0 6px 14px rgba(0,0,0,.05);
+    background: #fff;
+    line-height: 1.45;
+    word-break: break-word;
+}
+
+
+#messages .me{
+    margin-left: auto;
+    background: rgba(131,0,0,.08);
+    border-color: rgba(131,0,0,.18);
+}
+#messages .them{
+    margin-right: auto;
+}
+
+/* -------------- FRIEND LIST (friendList.html) -------------- */
+#friends{
+    display: grid;
+    gap: 12px;
+    padding: 0;
+}
+
+#friends > div > a{
+    display: grid;
+    grid-template-columns: 54px 1fr;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border: 1px solid var(--border, #e5e7eb);
+    border-radius: var(--radius, 14px);
+    background: var(--surface, #fff);
+    box-shadow: var(--shadow-soft, 0 6px 18px rgba(0,0,0,.06));
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+#friends > div > a:hover{
+    transform: translateY(-2px);
+    box-shadow: var(--shadow, 0 10px 30px rgba(0,0,0,.08));
+    border-color: rgba(131,0,0,.22);
+}
+
+#friends img{
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(131,0,0,.18);
+}
+#friends span{
+    font-weight: 900;
+}
+#friends span + span{
+    margin-left: 6px;
+    font-weight: 900;
+}
+
+/* -------------- NEW POST (newPost.html) -------------- */
+form[action*="/post/newPost/send"]{
+    padding: 18px;
+    border: 1px solid var(--border, #e5e7eb);
+    border-radius: var(--radius, 14px);
+    background: var(--surface, #fff);
+    box-shadow: var(--shadow-soft, 0 6px 18px rgba(0,0,0,.06));
+    display: grid;
+    gap: 10px;
+}
+
+form[action*="/post/newPost/send"] p{
+    font-weight: 900;
+    margin-top: 6px;
+}
+
+form[action*="/post/newPost/send"] textarea{
+    width: 100%;
+    min-height: 120px;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid var(--border, #e5e7eb);
+}
+
+form[action*="/post/newPost/send"] input[type="file"]{
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px dashed rgba(0,0,0,.18);
+    background: rgba(0,0,0,.02);
+}
+
+form[action*="/post/newPost/send"] button{
+    justify-self: start;
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,.08);
+    background: var(--brand, rgb(131,0,0));
+    color: #fff;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 0 8px 18px rgba(131,0,0,.18);
+}
+form[action*="/post/newPost/send"] button:hover{
+    background: var(--brand-2, rgb(170,56,56));
+}
+
+/* -------------- POST PAGE (post.html) -------------- */
+
+.post-card__header{
+    padding: 16px 18px;
+    border: 1px solid var(--border, #e5e7eb);
+    border-radius: var(--radius, 14px);
+    background: var(--surface, #fff);
+    box-shadow: var(--shadow-soft, 0 6px 18px rgba(0,0,0,.06));
+}
+
+
+.post-card__header{
+    display: grid;
+    grid-template-columns: 52px 1fr auto;
+    gap: 10px 12px;
+    align-items: center;
+}
+
+/* profile photo */
+.post-card__header > img.profile-photo{
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(131,0,0,.18);
+}
+
+
+.post-card__header > span:not(.date){
+    font-weight: 900;
+}
+
+
+.post-card__header > span.date{
+    color: var(--muted, #6b7280);
+    font-weight: 700;
+    font-size: .95rem;
+}
+
+
+.post-card__header > .post-card__body{
+    grid-column: 1 / -1;
+    margin-top: 8px;
+    display: grid;
+    gap: 10px;
+}
+
+
+.post-card__header .post-image{
+    width: 100% !important;
+    height: auto !important;
+    max-height: 520px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid var(--border, #e5e7eb);
+    box-shadow: 0 8px 20px rgba(0,0,0,.06);
+}
+
+
+.post-card__header > .post-footer{
+    grid-column: 1 / -1;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border, #e5e7eb);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+
+.post-card__header .post-footer button{
+    padding: 9px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,.08);
+    background: var(--brand, rgb(131,0,0));
+    color: #fff;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 0 8px 18px rgba(131,0,0,.18);
+}
+.post-card__header .post-footer button:hover{
+    background: var(--brand-2, rgb(170,56,56));
+}
+
+
+.post-card__header > form[action*="submitComment"]{
+    grid-column: 1 / -1;
+    margin-top: 12px;
+    display: grid;
+    gap: 10px;
+}
+.post-card__header > form[action*="submitComment"] textarea{
+    width: 100%;
+    min-height: 110px;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid var(--border, #e5e7eb);
+}
+.post-card__header > form[action*="submitComment"] button{
+    width: fit-content;
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,.08);
+    background: var(--brand, rgb(131,0,0));
+    color: #fff;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 0 8px 18px rgba(131,0,0,.18);
+}
+.post-card__header > form[action*="submitComment"] button:hover{
+    background: var(--brand-2, rgb(170,56,56));
+}
+
+
+.post-card__header > iframe{
+    grid-column: 1 / -1;
+    margin-top: 12px;
+    width: 100% !important;
+    height: min(520px, 55vh) !important;
+    border: 1px solid var(--border, #e5e7eb);
+    border-radius: 14px;
+    background: var(--surface-2, #fafafa);
+}
+
+/* -------------- COMMENTS (commentSection.html inside iframe) -------------- */
+.commentSection{
+    padding: 14px;
+    display: grid;
+    gap: 10px;
+}
+.commentSection .post-card{
+    border: 1px solid var(--border, #e5e7eb);
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 6px 14px rgba(0,0,0,.05);
+    overflow: hidden;
+}
+.commentSection .post-card__header{
+    display: block;
+    padding: 12px 14px;
+    border: none;
+    box-shadow: none;
+    background: rgba(131,0,0,.04);
+}
+
+/* -------------- SEARCH (searchPage.html) -------------- */
+.search-container{
+    padding: 18px;
+}
+
+.search-form{
+    display: grid;
+    grid-template-columns: 1fr 200px auto;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+@media (max-width: 720px){
+    .search-form{ grid-template-columns: 1fr; }
+}
+
+
+.search-result{
+    border: 1px solid var(--border, #e5e7eb) !important;
+    border-radius: 14px !important;
+    background: var(--surface, #fff) !important;
+    box-shadow: 0 6px 14px rgba(0,0,0,.05) !important;
+}
+
+/* -------------- NEW POST (newPost.html) -------------- */
+form[action*="/post/newPost/send"]{
+    padding: 18px;
+    border: 1px solid var(--border, #e5e7eb);
+    border-radius: var(--radius, 14px);
+    background: var(--surface, #fff);
+    box-shadow: var(--shadow-soft, 0 6px 18px rgba(0,0,0,.06));
+    display: grid;
+    gap: 10px;
+}
+
+form[action*="/post/newPost/send"] textarea{
+    width: 100%;
+    min-height: 120px;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid var(--border, #e5e7eb);
+}
+
+form[action*="/post/newPost/send"] input[type="file"]{
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px dashed rgba(0,0,0,.18);
+    background: rgba(0,0,0,.02);
+}
+
+form[action*="/post/newPost/send"] button{
+    padding: 10px 14px;
+    border-radius: 12px;
+    background: var(--brand, rgb(131,0,0));
+    color: #fff;
+    font-weight: 900;
 }
