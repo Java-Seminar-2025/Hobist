@@ -4,22 +4,16 @@
     Theme of this project is a social network app for people that would like
     to enjoy their hobby's with other people
 
-### Planned features
-   * Choice of multiple hobby's that each will intruduce you to community of new people
-   * befriending/blocking option
-   * live chat
-   * live notification
-   * posting/liking/commenting
-   * personal app setting
-   * and many more options to be announced....
-
 ### Content
-    - Database and database diagram that will expand in future
-    - Homepage with posts
-    - post creation
-    - login/signup
-    - hashed passwords and encrypted messages for privacy and security
-    - chat
-    - search page for other users
-    - personal info customisation
-    - password recoveri with mail
+
+   * Choice of multiple hobby's that each will intruduce you to community of new people
+   * Homepage with posts
+   * befriending/blocking option
+   * posting/liking/commenting
+   * login/signup
+   * hashed passwords and encrypted messages for privacy and security
+   * chat
+   * notification
+   * search
+   * personal info customisation
+   * password recoveri with mail
