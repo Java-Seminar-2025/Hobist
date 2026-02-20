@@ -14,14 +14,12 @@
    * and many more options to be announced....
 
 ### Content
-    - Database and database diagram that will expand
-    in future and .yaml file that can run in inteliij IDE (docker must be
-    added in intelijj) to set up our postgresql database
-    - Homepage with posts ( creating posts is in development)
+    - Database and database diagram that will expand in future
+    - Homepage with posts
+    - post creation
     - login/signup
     - hashed passwords and encrypted messages for privacy and security
     - chat
-    
-### current development
     - search page for other users
     - personal info customisation
+    - password recoveri with mail
