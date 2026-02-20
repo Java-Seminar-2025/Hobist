@@ -16,4 +16,4 @@
    * notification
    * search
    * personal info customisation
-   * password recoveri with mail
+   * password recovery with mail
